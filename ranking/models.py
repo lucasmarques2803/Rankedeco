@@ -16,7 +16,7 @@ class Item(models.Model):
 class Nota(models.Model):
     bandeco = models.ForeignKey(Bandeco, on_delete=models.CASCADE)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    value = models.IntegerField(default=0)
+    value = models.PositiveSmallIntegerField(default=0)
 
 class Comentario(models.Model):
     date = models.DateTimeField(auto_now=True)
