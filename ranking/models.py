@@ -3,7 +3,12 @@ from django.conf import settings
 
 class Bandeco(models.Model):
     name = models.CharField(max_length=255)
-    description = models.TextField()
+    description = models.TextField(max_length=255)
+    hora_abertura_almoco = models.TimeField()
+    hora_final_almoco = models.TimeField()
+    hora_abertura_janta = models.TimeField()
+    hora_final_janta = models.TimeField()
+    endereco = models.CharField(max_length=255)
 
 class Item(models.Model):
     name = models.CharField(max_length=255)
