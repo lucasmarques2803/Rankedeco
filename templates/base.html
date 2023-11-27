@@ -7,6 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&family=Inter:wght@400;600&family=Urbanist:wght@700;900&display=swap" rel="stylesheet" />
+
     <link rel="stylesheet" href="{% static 'reset.css' %}" />
     <link rel="stylesheet" href="{% static 'style.css' %}" />
     <title>
@@ -18,11 +22,27 @@
 
   <body>
     <header class="main-header">
+      <img class="main-logo" src="" alt="Logo Rankedeco" />
+      <nav class="main-nav">
+        <p>nn sei oq</p>
+        <p>nn sei q la</p>
+      </nav>
+      <ul class="main-login">
+        {% if user.is_authenticated %}
+          <li>Logado com {{ user.username }}</li>
+          <li>
+            <a class="main-button" href="{% url 'logout' %}" lang="en">Logout</a>
+          </li>
+        {% else %}
+          <li>
+            <a class="main-button" href="{% url 'login' %}" lang="en">Login</a>
+          </li>
+        {% endif %}
+      </ul>
     </header>
     {% block content %}
 
     {% endblock %}
-    <footer class="main-footer">
-    </footer>
+    <footer class="main-footer"></footer>
   </body>
 </html>
