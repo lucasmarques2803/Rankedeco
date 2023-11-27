@@ -1,5 +1,22 @@
-{% extends 'base.html' %} {% block content %}
-<main>
-    <h1>Página inicial</h1>
-</main>
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %}Página Inicial{% endblock %}
+{% block content %}
+  <main>
+    <h1>Página Inicial</h1>
+    {% if bandeco_list %}
+      <ul>
+        {% for bandeco in bandeco_list %}
+          <li>
+            <a href="{% url 'detail' bandeco.id %}">
+                <h2>{{ bandeco.name }}</h2>
+                <img src="{% static 'images/{{bandeco.image}}'%}" alt="Imagem de {{ bandeco.name }}">
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Não foi encontrado nenhum bandeco.</p>
+    {% endif %}
+  </main>
 {% endblock %}

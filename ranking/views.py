@@ -5,7 +5,6 @@ from django.urls import reverse
 from django.views import generic
 from .models import Bandeco, Item, Nota, Comentario
 import requests
-# from .forms import ProjectForm, CommentForm
 
 
 # Variáveis globais
@@ -30,12 +29,20 @@ def get_api_data(restaurant: str) -> dict:
 
     return context
 
-
 class BandecoListView(generic.ListView):
     model = Bandeco
     template_name = "ranking/index.html"
 
+class BandecoDetailView(generic.DetailView):
+    model = Bandeco
+    template_name = "ranking/detail.html"
 
-def detail_bandeco(requests, bandeco):
-    context = get_api_data(bandeco)
-    return render(requests, "ranking/detail.html", context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["lunch_menu"] = get_api_data(self.object.name)["lunch_menu"]
+        context["dinner_menu"] = get_api_data(self.object.name)["dinner_menu"]
+        return context
+
+# def detail_bandeco(requests, bandeco):
+#     context = get_api_data(bandeco)
+#     return render(requests, "ranking/detail.html", context)
