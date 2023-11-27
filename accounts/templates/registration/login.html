@@ -5,7 +5,6 @@ Login
 {% endblock title %}
 
 {% block content %}
-<h1>Login de Usuário</h1>
 
 {% if form.errors %}
 <p>Sua senha e nome de usuário não correspondem. Tente novamente.</p>
@@ -20,11 +19,12 @@ Login
 {% endif %}
 
 <form method="post" action="{% url 'login' %}">
+    <h1 class="login">Login de Usuário</h1>
     {% csrf_token %}
     {{ form.as_p}}
-    <button type="submit" value="login">Entrar</button>
+    <button type="submit" value="login" class="login_signin_button">Entrar</button>
     <input type="hidden" name="next" value="{{ next }}">
+    <p>Não possui usuário?</p>
+    <a class="login_button" href="{% url 'signup' %}">Cadastre-se</a>
+    {% endblock %}
 </form>
-
-<p>Não possui usuário? <a href="{% url 'signup' %}">Cadastre-se</a></p>
-{% endblock %}
