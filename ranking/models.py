@@ -2,11 +2,11 @@ from django.db import models
 from django.conf import settings
 
 class Bandeco(models.Model):
-    name = models.CharField(max_length=255)
-    description = models.TextField(max_length=255)
-    horarios = models.CharField(max_length=255)
-    contato = models.CharField(max_length=255)
-    endereco = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, default="Não informado")
+    description = models.TextField(max_length=255, default="Não informado")
+    horarios = models.CharField(max_length=255, default="Não informado")
+    contato = models.CharField(max_length=255, default="Não informado")
+    endereco = models.CharField(max_length=255, default="Não informado")
 
 class Item(models.Model):
     name = models.CharField(max_length=255)
