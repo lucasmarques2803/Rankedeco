@@ -1,5 +1,7 @@
 from multiprocessing import context
+import time
 from typing import Any
+from django.db.models import Avg
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views import generic
@@ -32,6 +34,36 @@ def get_api_data(restaurant: str) -> dict:
 class BandecoListView(generic.ListView):
     model = Bandeco
     template_name = "ranking/index.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        bandecos = Bandeco.objects.all()
+        context["bandeco_data"] = []
+
+        for bandeco in bandecos:
+            if time.localtime().tm_hour < 15:
+                menu = get_api_data(bandeco.name)["lunch_menu"]
+            else:
+                menu = get_api_data(bandeco.name)["dinner_menu"]
+
+            itens = Item.objects.filter(bandeco=bandeco, name__in=menu)
+            notas = Nota.objects.filter(bandeco=bandeco, item__in=itens)
+            average = notas.aggregate(Avg("value"))
+            print(average)
+            print(itens)
+            print(menu)
+
+            bandeco_data = {
+                "bandeco": bandeco,
+                "menu": menu,
+                "itens": itens,
+                "average_nota": average["value__avg"],
+            }
+
+            context["bandeco_data"].append(bandeco_data)
+
+        return context
 
 class BandecoDetailView(generic.DetailView):
     model = Bandeco

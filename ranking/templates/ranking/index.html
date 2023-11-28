@@ -1,17 +1,21 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% load static %}
-{% block title %}Página Inicial{% endblock %}
+{% block title %}
+  Página Inicial
+{% endblock %}
 {% block content %}
   <main>
     <h1>Página Inicial</h1>
     {% if bandeco_list %}
       <ul>
-        {% for bandeco in bandeco_list %}
+        {% for bandeco_data in bandeco_data %}
           <li>
-            <a href="{% url 'detail' bandeco.id %}">
-                <h2>{{ bandeco.name }}</h2>
-                <img src="{% static 'images/{{bandeco.image}}'%}" alt="Imagem de {{ bandeco.name }}">
+            <a href="{% url 'detail' bandeco_data.bandeco.id %}">
+              <h2>{{ bandeco_data.bandeco.name }}</h2>
+              <img src="{% static 'images/{{bandeco_data.bandeco.image}}' %}" alt="Imagem de {{ bandeco_data.bandeco.name }}" />
             </a>
+            <p>Nota: {{ bandeco_data.average_nota }}</p>
+            <p>Menu: {{ bandeco_data.menu }}</p>
           </li>
         {% endfor %}
       </ul>
