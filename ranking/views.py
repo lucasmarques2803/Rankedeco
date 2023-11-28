@@ -96,8 +96,8 @@ def create_comentario(request, bandeco_id):
     bandeco = get_object_or_404(Bandeco, pk=bandeco_id)
     if request.method == 'POST':
         form = ComentarioForm(request.POST)
-        if form.is_valid():
-            comentario_author = form.cleaned_data['author']
+        if form.is_valid(): 
+            comentario_author = request.user
             comentario_text = form.cleaned_data['text']
             comentario_nota = form.cleaned_data['nota']
             comentario = Comentario(author=comentario_author,
@@ -111,9 +111,9 @@ def create_comentario(request, bandeco_id):
             else:
                 menu = get_api_data(bandeco.name)["dinner_menu"]
             for item in menu:
-                instancia=Item.Objects.filter(bandeco=bandeco, name=item)
+                instancia=Item.objects.filter(bandeco=bandeco, name=item)
                 if instancia:
-                    nota = Nota.Objects.filter(bandeco=bandeco, item=instancia)
+                    nota = Nota.objects.filter(bandeco=bandeco, item=instancia)
                     nota.value = nota.value*nota.count
 
             return HttpResponseRedirect(
@@ -123,4 +123,4 @@ def create_comentario(request, bandeco_id):
     
     form = ComentarioForm()
     context = {'form': form, 'bandeco': bandeco}
-    return render(request, 'ranking/comments.html', context)
+    return render(request, 'ranking/comment.html', context)
