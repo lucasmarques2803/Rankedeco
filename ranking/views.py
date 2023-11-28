@@ -95,11 +95,17 @@ def create_comentario(request, bandeco_id):
                 menu = get_api_data(bandeco.name)["lunch_menu"]
             else:
                 menu = get_api_data(bandeco.name)["dinner_menu"]
-            for item in menu:
-                instancia=Item.Objects.filter(bandeco=bandeco, name=item)
+            for menu_item in menu:
+                instancia = Item.Objects.filter(bandeco=bandeco, name=menu_item)
                 if instancia:
                     nota = Nota.Objects.filter(bandeco=bandeco, item=instancia)
-                    nota.value = nota.value*nota.count
+                    nota.value = (nota.value*nota.count + comentario_nota) / (nota.count + 1)
+                    nota.count += 1
+                    nota.save()
+                else:
+                    item = Item(name=menu_item, bandeco=bandeco)
+                    item.save()
+                    nota = Nota(bandeco=bandeco, item=item, value=comentario_nota, count=1)
 
             return HttpResponseRedirect(
                 reverse('detail', 
