@@ -1,21 +1,49 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
+{% block title %}
+  {{ bandeco.name }}
+{% endblock %}
 {% block content %}
-
-<main>
-    <h1>Teste!</h1>
-</main>
-
-{{ bandeco }}
-
-{{ lunch_menu }}
-
-<br>
-<br>
-
-{{ dinner_menu }}
-
-<p>
-    <a href="{% url bandeco.id 'create_comment' %}">Comentar</a>
-</p>
-
+  <main>
+    <section>
+      <h1>{{ bandeco.name }}</h1>
+      <img src="{{ bandeco.img_url }}" alt="Imagem de {{ bandeco.name }}" />
+      <p>{{ bandeco.description }}</p>
+      <p>Endereço: {{ bandeco.endereco }}</p>
+      <p>Telefone: {{ bandeco.contato }}</p>
+      <p>Horário de funcionamento: {{ bandeco.horarios }}</p>
+      <p>Menu almoço: <span>Nota: {{ bandeco_data.lunch_nota }}</span></p>
+      <ul>
+        {% for item in bandeco_data.lunch_menu %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+      <p>Menu janta: <span>Nota: {{ bandeco_data.dinner_nota }}</span></p>
+      <ul>
+        {% for item in bandeco_data.dinner_menu %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+    <section>
+      <h2>Comentários</h2>
+      <ul>
+        {% comment %} <li>
+          <a href="{% url 'comment' bandeco.id %}">Comentar</a>
+        </li> {% endcomment %}
+        {% if bandeco.comentario_set.all %}
+          {% for comentario in bandeco.comentario_set.all %}
+            <figure>
+              <figcaption>
+                <strong>{{ comentario.author }}</strong> ({{ comentario.date|date:'d/m/Y' }})
+                <strong>{{ comentario.nota }}</strong>
+              </figcaption>
+              <blockquote>"{{ comentario.text }}"</blockquote>
+            </figure>
+          {% endfor %}
+        {% else %}
+          <h6>Ainda não existe nenhum comentário para o bandeco.</h6>
+        {% endif %}
+      </ul>
+    </section>
+  </main>
 {% endblock %}

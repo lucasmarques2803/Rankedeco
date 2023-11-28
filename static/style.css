@@ -18,6 +18,79 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  position: relative;
+}
+
+nav li {
+  list-style: none;
+  text-align: center;
+}
+nav li a {
+  color: #333;
+  text-decoration: none;
+  font-size: 1.5em;
+  padding: 5px 2px;
+  display: inline-flex;
+  font-weight: 700;
+  transition: 0.5s;
+}
+nav:hover li a {
+  opacity: 0;
+}
+nav li:hover a {
+  color: #000;
+  background: transparent;
+  opacity: 1;
+}
+nav li a:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  color: rgba(0, 204, 255, 0.3);
+  z-index: -1;
+  opacity: 0;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 50px;
+  transition: letter-spacing 0.5s, left 0.5s;
+}
+
+nav li:nth-child(6n + 1) a:hover:before {
+  content: attr(data-text);
+  opacity: 1;
+  left: 9%;
+  letter-spacing: 10px;
+  height: 100px;
+}
+
+nav li:nth-child(6n + 2) a:hover:before {
+  content: attr(data-text);
+  opacity: 1;
+  left: 31%;
+  letter-spacing: 10px;
+  height: 100px;
+}
+
+nav li:nth-child(6n + 3) a:hover:before {
+  content: attr(data-text);
+  opacity: 1;
+  left: 56%;
+  letter-spacing: 10px;
+  height: 100px;
+}
+
+nav li:nth-child(6n + 4) a:hover:before {
+  content: attr(data-text);
+  opacity: 1;
+  left: 84%;
+  letter-spacing: 10px;
+  height: 100px;
 }
 
 .main-nav>* {
