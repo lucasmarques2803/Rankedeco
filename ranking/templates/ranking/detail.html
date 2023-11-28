@@ -1,17 +1,20 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  {{ bandeco.name }}
+{% endblock %}
 {% block content %}
+  <main>
+    <h1>{{bandeco.name}}</h1>
+    <img src="{% static 'images/' %}{{ bandeco.name|lower }}.jpeg" alt="Imagem de {{ bandeco.name }}" />
 
-<main>
-    <h1>Teste!</h1>
-</main>
+    {{ bandeco }}
 
-{{ bandeco }}
+    {{ lunch_menu }}
 
-{{ lunch_menu }}
+    <br />
+    <br />
 
-<br>
-<br>
-
-{{ dinner_menu }}
-
+    {{ dinner_menu }}
+  </main>
 {% endblock %}
