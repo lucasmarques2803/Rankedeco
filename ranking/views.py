@@ -1,6 +1,6 @@
 from multiprocessing import context
 import time
-from django.db.models import Avg
+from django.db.models import Avg, F
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
@@ -94,6 +94,7 @@ class BandecoDetailView(generic.DetailView):
 
 def create_comentario(request, bandeco_id):
     bandeco = get_object_or_404(Bandeco, pk=bandeco_id)
+    
     if request.method == 'POST':
         form = ComentarioForm(request.POST)
         if form.is_valid():
@@ -110,23 +111,19 @@ def create_comentario(request, bandeco_id):
                 menu = get_api_data(bandeco.name)["lunch_menu"]
             else:
                 menu = get_api_data(bandeco.name)["dinner_menu"]
+
             for menu_item in menu:
-                instancia = Item.Objects.filter(bandeco=bandeco, name=menu_item)
-                if instancia:
-                    nota = Nota.Objects.filter(bandeco=bandeco, item=instancia)
-                    nota.value = (nota.value*nota.count + comentario_nota) / (nota.count + 1)
-                    nota.count += 1
-                    nota.save()
-                else:
-                    item = Item(name=menu_item, bandeco=bandeco)
-                    item.save()
-                    nota = Nota(bandeco=bandeco, item=item, value=comentario_nota, count=1)
+                item, created = Item.objects.get_or_create(name=menu_item)
+
+                nota, created = Nota.objects.get_or_create(bandeco=bandeco, item=item)
+                nota.value = (F('value') * F('count') + comentario_nota) / (F('count') + 1)
+                nota.count = F('count') + 1
+                nota.save()
 
             return HttpResponseRedirect(
-                reverse('detail', 
-                        args=(bandeco_id, ))
-                )
-    
+                reverse('detail', args=(bandeco_id,))
+            )
+
     form = ComentarioForm()
     context = {'form': form, 'bandeco': bandeco}
     return render(request, 'ranking/comment.html', context)
