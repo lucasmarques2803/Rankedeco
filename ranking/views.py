@@ -28,6 +28,7 @@ def get_api_data(restaurant: str) -> dict:
 
     return context
 
+
 class BandecoListView(generic.ListView):
     model = Bandeco
     template_name = "ranking/index.html"

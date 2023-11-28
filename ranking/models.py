@@ -3,10 +3,11 @@ from django.conf import settings
 
 class Bandeco(models.Model):
     name = models.CharField(max_length=255)
-    description = models.TextField(max_length=255)
+    description = models.TextField()
     horarios = models.CharField(max_length=255)
     contato = models.CharField(max_length=255)
     endereco = models.CharField(max_length=255)
+    img_url = models.URLField(default="")
 
 class Item(models.Model):
     name = models.CharField(max_length=255)
