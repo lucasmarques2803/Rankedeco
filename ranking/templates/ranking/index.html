@@ -2,6 +2,13 @@
 {% block title %}
   Página Inicial
 {% endblock %}
+{% block nav %}
+  {% for bandeco in bandeco_list %}
+    <li>
+      <a href="{% url 'detail' bandeco.id %}" data-text="{{ bandeco.name }}">{{ bandeco.name }}</a>
+    </li>
+  {% endfor %}
+{% endblock %}
 {% block content %}
   <main>
     <h1>Página Inicial</h1>
@@ -21,7 +28,6 @@
               {% endfor %}
             </ul>
           </li>
-
         {% endfor %}
       </ul>
     {% else %}

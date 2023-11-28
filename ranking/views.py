@@ -1,6 +1,7 @@
 from multiprocessing import context
 import time
 from django.db.models import Avg
+from django.shortcuts import get_object_or_404
 from django.views import generic
 from .models import Bandeco, Item, Nota, Comentario
 import requests
@@ -84,6 +85,7 @@ class BandecoDetailView(generic.DetailView):
             "dinner_nota": dinner_average["value__avg"],
         }
 
+        context["bandecos"] = Bandeco.objects.all()
         context["bandeco_data"] = bandeco_data
 
         return context
