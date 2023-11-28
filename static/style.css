@@ -1,10 +1,54 @@
 :root {
-  font-size: 16px;
+  font-size: 10px;
   font-family: 'Urbanist', sans-serif;
 }
 
+* {
+  font-size: 1.6rem;
+}
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+main{
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding: 1rem 1rem;
+  flex-grow: 1;
+}
+
+.bandeco_card {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30rem;
+  height: 30rem;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  color: black;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card img{
+  width: 30rem;
+  height: 30rem;
+  border-radius: 1rem;
+}
+
 .main-logo {
-  width: 300px;
+  width: 30rem;
 }
 
 .main-header {
@@ -28,8 +72,8 @@ nav li {
 nav li a {
   color: #333;
   text-decoration: none;
-  font-size: 1.5em;
-  padding: 5px 2px;
+  font-size: 3.5rem;
+  padding: 0.5rem 0.2rem;
   display: inline-flex;
   font-weight: 700;
   transition: 0.5s;
@@ -51,46 +95,42 @@ nav li a:before {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2em;
+  font-size: 7rem;
   color: rgba(0, 204, 255, 0.3);
   z-index: -1;
   opacity: 0;
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 50px;
+  letter-spacing: 5rem;
   transition: letter-spacing 0.5s, left 0.5s;
 }
 
 nav li:nth-child(6n + 1) a:hover:before {
   content: attr(data-text);
   opacity: 1;
-  left: 9%;
-  letter-spacing: 10px;
-  height: 100px;
+  letter-spacing: 1rem;
+  height: 10rem;
 }
 
 nav li:nth-child(6n + 2) a:hover:before {
   content: attr(data-text);
   opacity: 1;
-  left: 31%;
-  letter-spacing: 10px;
-  height: 100px;
+  letter-spacing: 1rem;
+  height: 10rem;
 }
 
 nav li:nth-child(6n + 3) a:hover:before {
   content: attr(data-text);
   opacity: 1;
-  left: 56%;
-  letter-spacing: 10px;
-  height: 100px;
+  letter-spacing: 1rem;
+  height: 10rem;
 }
 
 nav li:nth-child(6n + 4) a:hover:before {
   content: attr(data-text);
   opacity: 1;
-  left: 84%;
-  letter-spacing: 10px;
-  height: 100px;
+  letter-spacing: 1rem;
+  height: 10rem;
 }
 
 .main-nav>* {
@@ -112,20 +152,13 @@ nav li:nth-child(6n + 4) a:hover:before {
   margin-right: 1.5rem;
 }
 
-main#conteiner-principal {
-  margin: 0 100px;
-  width: 100%;
-  padding: 1rem 1rem;
-  flex-grow: 1;
-}
-
 .main-button {
   display: inline-block;
-  padding: 0.75rem 1.25rem;
+  padding: 1.1rem 1.8rem;
   border-radius: 10rem;
   color: #fff;
   text-transform: uppercase;
-  font-size: 1rem;
+  font-size: 1.7rem;
   letter-spacing: 0.15rem;
   transition: all 0.3s;
   position: relative;
@@ -171,12 +204,12 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 5rem;
   margin-right: auto;
   margin-left: auto;
-  width: 450px;
-  border: 1px solid black;
-  border-radius: 10px;
+  width: 45rem;
+  border: 0.1rem solid black;
+  border-radius: 1rem;
 }
 
 label {
@@ -184,25 +217,26 @@ label {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 5px;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
 }
 
 input[type="text"] {
-  width: 400px;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid rgb(140, 159, 164);
-  border-radius: 16px;
+  width: 40rem;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 0.1rem solid rgb(140, 159, 164);
+  border-radius: 1.6rem;
   font-weight: bold;
   background-color: rgb(206, 231, 238);
 }
 
 input[type="password"] {
-  width: 400px;
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #0cf;
-  border-radius: 16px;
+  width: 40rem;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 0.1rem solid #0cf;
+  border-radius: 1.6rem;
   background-color: rgb(206, 231, 238);
 }
 
@@ -216,12 +250,13 @@ form li{
 .login_signin_button[type="submit"] {
   background-color: #0cf;
   color: white;
-  width: 400px;
-  padding: 8px;
-  border: 1px solid #0cf;
-  border-radius: 16px;
+  font-size: 1.6rem;
+  width: 40rem;
+  padding: 0.8rem;
+  border: 0.1rem solid #0cf;
+  border-radius: 1.6rem;
   cursor: pointer;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 }
 
 .login_button{
@@ -229,9 +264,10 @@ form li{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100px;
-  padding: 8px;
-  margin-bottom: 50px;
+  font-size: 1.6rem;
+  width: 10rem;
+  padding: 0.8rem;
+  margin-bottom: 5rem;
   border-radius: 10rem;
   background-color: #0cf;
   color: white;
@@ -241,12 +277,12 @@ form li{
 .signup_button[type="submit"] {
   background-color: #0cf;
   color: white;
-  width: 400px;
-  padding: 8px;
-  border: 1px solid #0cf;
-  border-radius: 16px;
+  width: 40rem;
+  padding: 0.8rem;
+  border: 0.1rem solid #0cf;
+  border-radius: 1.6rem;
   cursor: pointer;
-  margin-bottom: 50px;
+  margin-bottom: 5rem;
 }
 
 .login_button:hover,
@@ -255,10 +291,18 @@ form li{
   background-color: #008fb3;
 }
 
-.login{
-  font-size: larger;
+.login_h1{
+  font-size: 2rem;
   font-weight: bold;
-  margin-top: 20px;
-  margin-bottom: 40px;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+
+.login{
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
 }
 
