@@ -1,0 +1,25 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+<div class="text-spot">
+    <p class="textao"> 
+        Comentar no post {{ bandeco.titulo }} 
+    </p>
+    
+    <form action="{% url 'comments' bandeco.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        {% if form.errors.nota %}
+            <p class="error-message">{{ form.errors.nota.0 }}</p>
+        {% endif %}
+
+        <button type="submit">Postar Comentário</button>
+    </form>
+
+    <p>
+        <a href="{% url 'index' %}">Voltar para a página do bandeco</a>
+    </p>
+</div>
+
+{% endblock %}

@@ -2,10 +2,11 @@ from multiprocessing import context
 import time
 from typing import Any
 from django.db.models import Avg
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 from .models import Bandeco, Item, Nota, Comentario
+from .forms import ComentarioForm
 import requests
 
 
@@ -75,6 +76,36 @@ class BandecoDetailView(generic.DetailView):
         context["dinner_menu"] = get_api_data(self.object.name)["dinner_menu"]
         return context
 
-# def detail_bandeco(requests, bandeco):
-#     context = get_api_data(bandeco)
-#     return render(requests, "ranking/detail.html", context)
+
+def create_comentario(request, bandeco_id):
+    bandeco = get_object_or_404(Bandeco, pk=bandeco_id)
+    if request.method == 'POST':
+        form = ComentarioForm(request.POST)
+        if form.is_valid():
+            comentario_author = form.cleaned_data['author']
+            comentario_text = form.cleaned_data['text']
+            comentario_nota = form.cleaned_data['nota']
+            comentario = Comentario(author=comentario_author,
+                                    text=comentario_text,
+                                    nota=comentario_nota,
+                                    bandeco=bandeco)
+            comentario.save()
+
+            if time.localtime().tm_hour < 15:
+                menu = get_api_data(bandeco.name)["lunch_menu"]
+            else:
+                menu = get_api_data(bandeco.name)["dinner_menu"]
+            for item in menu:
+                instancia=Item.Objects.filter(bandeco=bandeco, name=item)
+                if instancia:
+                    nota = Nota.Objects.filter(bandeco=bandeco, item=instancia)
+                    nota.value = nota.value*nota.count
+
+            return HttpResponseRedirect(
+                reverse('detail', 
+                        args=(bandeco_id, ))
+                )
+    
+    form = ComentarioForm()
+    context = {'form': form, 'bandeco': bandeco}
+    return render(request, 'ranking/comments.html', context)
