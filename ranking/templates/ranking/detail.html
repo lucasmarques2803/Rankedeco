@@ -11,21 +11,39 @@
       <p>Endereço: {{ bandeco.endereco }}</p>
       <p>Telefone: {{ bandeco.contato }}</p>
       <p>Horário de funcionamento: {{ bandeco.horarios }}</p>
-      <p>Menu almoço:</p>
+      <p>Menu almoço: <span>Nota: {{ bandeco_data.lunch_nota }}</span></p>
       <ul>
-        {% for item in bandeco_data.menu %}
+        {% for item in bandeco_data.lunch_menu %}
           <li>{{ item }}</li>
         {% endfor %}
       </ul>
-      <p>Menu janta:</p>
+      <p>Menu janta: <span>Nota: {{ bandeco_data.dinner_nota }}</span></p>
       <ul>
-        {% for item in bandeco_data.menu %}
+        {% for item in bandeco_data.dinner_menu %}
           <li>{{ item }}</li>
         {% endfor %}
       </ul>
     </section>
     <section>
-      <h2>Avaliações</h2>
+      <h2>Comentários</h2>
+      <ul>
+        {% comment %} <li>
+          <a href="{% url 'comment' bandeco.id %}">Comentar</a>
+        </li> {% endcomment %}
+        {% if bandeco.comentario_set.all %}
+          {% for comentario in bandeco.comentario_set.all %}
+            <figure>
+              <figcaption>
+                <strong>{{ comentario.author }}</strong> ({{ comentario.date|date:'d/m/Y' }})
+                <strong>{{ comentario.nota }}</strong>
+              </figcaption>
+              <blockquote>"{{ comentario.text }}"</blockquote>
+            </figure>
+          {% endfor %}
+        {% else %}
+          <h6>Ainda não existe nenhum comentário para o bandeco.</h6>
+        {% endif %}
+      </ul>
     </section>
   </main>
 {% endblock %}

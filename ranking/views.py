@@ -64,13 +64,26 @@ class BandecoDetailView(generic.DetailView):
     model = Bandeco
     template_name = "ranking/detail.html"
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
 
-    #     bandeco = Bandeco.objects.get(pk=self.kwargs["pk"])
-    #     bandeco_data = filtros(bandeco)
+        lunch_menu = get_api_data(self.object.name)["lunch_menu"]
+        lunch_itens = Item.objects.filter(bandeco=self.object, name__in=lunch_menu)
+        lunch_notas = Nota.objects.filter(bandeco=self.object, item__in=lunch_itens)
+        lunch_average = lunch_notas.aggregate(Avg("value"))
 
-    #     context["bandeco_data"] = bandeco_data
-    #     context["comentarios"] = Comentario.objects.filter(bandeco=bandeco)
+        dinner_menu = get_api_data(self.object.name)["dinner_menu"]
+        dinner_itens = Item.objects.filter(bandeco=self.object, name__in=dinner_menu)
+        dinner_notas = Nota.objects.filter(bandeco=self.object, item__in=dinner_itens)
+        dinner_average = dinner_notas.aggregate(Avg("value"))
 
-    #     return context
+        bandeco_data = {
+            "lunch_menu": lunch_menu,
+            "dinner_menu": dinner_menu,
+            "lunch_nota": lunch_average["value__avg"],
+            "dinner_nota": dinner_average["value__avg"],
+        }
+
+        context["bandeco_data"] = bandeco_data
+
+        return context
