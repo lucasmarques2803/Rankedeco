@@ -1,15 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300&display=swap");
-
 :root {
   font-size: 16px;
   font-family: 'Urbanist', sans-serif;
 }
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Cairo', sans-serif;}
 
 .main-logo {
   width: 300px;
