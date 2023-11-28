@@ -6,9 +6,9 @@
   <main>
     <h1>Página Inicial</h1>
     {% if bandeco_list %}
-      <ul>
+      <ul class="bandeco_card">
         {% for bandeco_data in bandeco_data %}
-          <li>
+          <li class="card">
             <a href="{% url 'detail' bandeco_data.bandeco.id %}">
               <h2>{{ bandeco_data.bandeco.name }}</h2>
               <img src="{{ bandeco_data.bandeco.img_url }}" alt="Imagem de {{ bandeco_data.bandeco.name }}" />
@@ -21,6 +21,7 @@
               {% endfor %}
             </ul>
           </li>
+
         {% endfor %}
       </ul>
     {% else %}
