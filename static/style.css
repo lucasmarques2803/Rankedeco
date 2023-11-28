@@ -9,13 +9,14 @@
 
 h1 {
   font-size: 3rem;
-  text-align: center;
+  text-align: left;
+
 }
 
 main{
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
+  width: 80%;
   padding: 1rem 1rem;
   flex-grow: 1;
 }
@@ -23,28 +24,36 @@ main{
 .bandeco_card {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 3rem;
 }
 
 .card{
-  display: flex;
+  display: block;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 30rem;
-  height: 30rem;
-  margin: 1rem;
-  padding: 1rem;
+  align-items:center;
+  width: 27rem;
+  height: 55rem;
+  margin: auto;
   border-radius: 1rem;
   color: black;
+  font-size: 1.5rem;
+  font-weight: lighter;
+  text-align: justify;
+}
+
+.card h2{
+  display: flex;
   font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
+  margin-top: 1rem;
+  text-align: left;
 }
 
 .card img{
-  width: 30rem;
-  height: 30rem;
+  width: 27rem;
+  height: 27rem;
   border-radius: 1rem;
+  margin: auto;
 }
 
 .main-logo {
@@ -53,9 +62,12 @@ main{
 
 .main-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 0.5rem 1rem;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .main-nav {
@@ -313,3 +325,6 @@ form li{
   font-size: 1.6rem;
 }
 
+.checked {
+  color: orange;
+}
