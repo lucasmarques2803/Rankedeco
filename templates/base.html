@@ -24,8 +24,11 @@
     <header class="main-header">
       <a href="{% url 'index' %}"><img class="main-logo" src="{% static 'images/Logo-rankedeco.svg' %}" alt="Logo Rankedeco" /></a>
       <nav class="main-nav">
-        <p>nn sei oq</p>
-        <p>nn sei q la</p>
+        {% for bandeco in bandeco_list %}
+        <li> 
+          <a href="{% url 'detail' bandeco.id %}" data-text="{{bandeco.name}}">{{ bandeco.name }}</a>
+        </li>
+        {% endfor %}
       </nav>
       <ul class="main-login">
         {% if user.is_authenticated %}
