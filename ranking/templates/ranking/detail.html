@@ -27,9 +27,9 @@
     <section>
       <h2>Comentários</h2>
       <ul>
-        {% comment %} <li>
+        <li>
           <a href="{% url 'comment' bandeco.id %}">Comentar</a>
-        </li> {% endcomment %}
+        </li>
         {% if bandeco.comentario_set.all %}
           {% for comentario in bandeco.comentario_set.all %}
             <figure>
