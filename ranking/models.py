@@ -11,7 +11,6 @@ class Bandeco(models.Model):
 
 class Item(models.Model):
     name = models.CharField(max_length=255)
-    category = models.CharField(max_length=255)
     bandeco = models.ManyToManyField(Bandeco, through="Nota")
 
 class Nota(models.Model):

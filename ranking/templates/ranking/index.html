@@ -14,7 +14,12 @@
               <img src="{{ bandeco_data.bandeco.img_url }}" alt="Imagem de {{ bandeco_data.bandeco.name }}" />
             </a>
             <p>Nota: {{ bandeco_data.average_nota }}</p>
-            <p>Menu: {{ bandeco_data.menu }}</p>
+            <p>Menu:</p>
+            <ul>
+              {% for item in bandeco_data.menu %}
+                <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
           </li>
         {% endfor %}
       </ul>

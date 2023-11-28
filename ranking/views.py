@@ -10,7 +10,6 @@ import requests
 url = 'https://uspdigital.usp.br/rucard/servicos/menu/'
 hash = '596df9effde6f877717b4e81fdb2ca9f'
 restaurant_ids = {"Central": 6, "Prefeitura": 7, "Fisica": 8, "Quimica": 9}
-meal_components = {"Proteina": 1, "Alternativa": 2, "Acompanhamento": 3, "Salada": 4, "Sobremesa": 5}
 
 
 # Função utilitária para pegar o cardápio de um restaurante
@@ -48,9 +47,6 @@ class BandecoListView(generic.ListView):
             itens = Item.objects.filter(bandeco=bandeco, name__in=menu)
             notas = Nota.objects.filter(bandeco=bandeco, item__in=itens)
             average = notas.aggregate(Avg("value"))
-            print(average)
-            print(itens)
-            print(menu)
 
             bandeco_data = {
                 "bandeco": bandeco,
@@ -63,10 +59,18 @@ class BandecoListView(generic.ListView):
 
         return context
 
+
 class BandecoDetailView(generic.DetailView):
     model = Bandeco
     template_name = "ranking/detail.html"
 
-# def detail_bandeco(requests, bandeco):
-#     context = get_api_data(bandeco)
-#     return render(requests, "ranking/detail.html", context)
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+
+    #     bandeco = Bandeco.objects.get(pk=self.kwargs["pk"])
+    #     bandeco_data = filtros(bandeco)
+
+    #     context["bandeco_data"] = bandeco_data
+    #     context["comentarios"] = Comentario.objects.filter(bandeco=bandeco)
+
+    #     return context

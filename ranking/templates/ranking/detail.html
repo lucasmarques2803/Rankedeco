@@ -1,20 +1,31 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block title %}
   {{ bandeco.name }}
 {% endblock %}
 {% block content %}
   <main>
-    <h1>{{bandeco.name}}</h1>
-    <img src="{% static 'images/' %}{{ bandeco.name|lower }}.jpeg" alt="Imagem de {{ bandeco.name }}" />
-
-    {{ bandeco }}
-
-    {{ lunch_menu }}
-
-    <br />
-    <br />
-
-    {{ dinner_menu }}
+    <section>
+      <h1>{{ bandeco.name }}</h1>
+      <img src="{{ bandeco.img_url }}" alt="Imagem de {{ bandeco.name }}" />
+      <p>{{ bandeco.description }}</p>
+      <p>Endereço: {{ bandeco.endereco }}</p>
+      <p>Telefone: {{ bandeco.contato }}</p>
+      <p>Horário de funcionamento: {{ bandeco.horarios }}</p>
+      <p>Menu almoço:</p>
+      <ul>
+        {% for item in bandeco_data.menu %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+      <p>Menu janta:</p>
+      <ul>
+        {% for item in bandeco_data.menu %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+    <section>
+      <h2>Avaliações</h2>
+    </section>
   </main>
 {% endblock %}
