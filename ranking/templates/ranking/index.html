@@ -12,7 +12,7 @@
           <li>
             <a href="{% url 'detail' bandeco_data.bandeco.id %}">
               <h2>{{ bandeco_data.bandeco.name }}</h2>
-              <img src="{% static 'images/{{bandeco_data.bandeco.image}}' %}" alt="Imagem de {{ bandeco_data.bandeco.name }}" />
+              <img src="{% static 'images/' %}{{ bandeco_data.bandeco.name|lower }}.jpeg" alt="Imagem de {{ bandeco_data.bandeco.name }}" />
             </a>
             <p>Nota: {{ bandeco_data.average_nota }}</p>
             <p>Menu: {{ bandeco_data.menu }}</p>
