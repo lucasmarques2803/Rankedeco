@@ -76,8 +76,8 @@ hr.line{
 .menus{
   display: flex;
   flex-direction: column;
-  justify-content:space-between;
-  align-items: center;
+  justify-content: space-between;
+  align-items: left;
   margin-left: 1rem;
 }
 
