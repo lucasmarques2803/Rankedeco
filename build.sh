@@ -8,6 +8,7 @@ python manage.py collectstatic --no-input
 # adicione linhas abaixo
 python manage.py makemigrations accounts
 python manage.py makemigrations ranking
+python manage.py makemigrations api
 python manage.py migrate
 python manage.py loaddata bandecos
 
