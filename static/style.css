@@ -18,6 +18,10 @@ h1 {
 
 }
 
+h2 {
+  font-size: 2rem;
+}
+
 main{
   margin-left: auto;
   margin-right: auto;
@@ -26,14 +30,22 @@ main{
   flex-grow: 1;
 }
 
+.detail_article{
+  display: flex;
+  flex-direction: row;
+  left: 0;
+  margin-top: 3rem;
+}
+
 .detail_img{
   width: 60%;
-  margin-top: 3rem;
   border-radius: 1rem;
 }
 
 hr.line{
   border-top: 1px dotted;
+  margin-top: 1rem;
+  color: #333;
 }
 
 .icon{
@@ -47,6 +59,21 @@ hr.line{
   font-weight: lighter;
   text-decoration-line: underline;
   color: #333;
+}
+
+.menus{
+  display: flex;
+  flex-direction: column;
+  justify-content:start;
+  align-content: space-around;
+  row-gap: 12rem;
+  margin-left: 1rem;
+}
+
+.menu_list{
+  list-style-type: circle;
+  margin-left: 2rem;
+  margin-top: 0.5rem;
 }
 
 .bandeco_card {

@@ -41,25 +41,84 @@
             {% else %}
               <span class="fa fa-star"></span>
             {% endif %}</div>
-      <img class="detail_img" src="{{ bandeco.img_url }}" alt="Imagem de {{ bandeco.name }}" />
-      <hr class="line">
       <p><img class="icon" src="{% static 'images/telefones.png' %}" alt="telefone"/>Telefone: {{ bandeco.contato }}</p>
       <p><img class="icon" src="{% static 'images/relogio.png' %}" alt="relogio"/>Horário de funcionamento: {{ bandeco.horarios }}</p>
-      <p><img class="icon" src="{% static 'images/menu.png' %}" alt="cardapio"/>Menu almoço: <span>Nota: {{ bandeco_data.lunch_nota }}</span>
-      </p>
-      <ul>
-        {% for item in bandeco_data.lunch_menu %}
-          <li>{{ item }}</li>
-        {% endfor %}
-      </ul>
-      <p>
-        Menu janta: <span>Nota: {{ bandeco_data.dinner_nota }}</span>
-      </p>
-      <ul>
-        {% for item in bandeco_data.dinner_menu %}
-          <li>{{ item }}</li>
-        {% endfor %}
-      </ul>
+      <article class="detail_article">
+      <img class="detail_img" src="{{ bandeco.img_url }}" alt="Imagem de {{ bandeco.name }}" />
+        <div class="menus">
+          <div>
+            <p>Menu almoço: 
+              {% if bandeco_data.lunch_nota >= 0.5 %}
+                <span class="fa fa-star checked"></span>
+              {% else %}
+                <span class="fa fa-star"></span>
+              {% endif %}
+              {% if bandeco_data.lunch_nota >= 1.5 %}
+                <span class="fa fa-star checked"></span>
+              {% else %}
+                <span class="fa fa-star"></span>
+              {% endif %}
+              {% if bandeco_data.lunch_nota >= 2.5 %}
+                <span class="fa fa-star checked"></span>
+              {% else %}
+                <span class="fa fa-star"></span>
+              {% endif %}
+              {% if bandeco_data.lunch_nota >= 3.5 %}
+                <span class="fa fa-star checked"></span>
+              {% else %}
+                <span class="fa fa-star"></span>
+              {% endif %}
+              {% if bandeco_data.lunch_nota >= 4.5 %}
+                <span class="fa fa-star checked"></span>
+              {% else %}
+                <span class="fa fa-star"></span>
+              {% endif %}
+            </p>
+          
+            <ul class="menu_list">
+              {% for item in bandeco_data.lunch_menu %}
+                <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div>
+            <p>
+              Menu jantar: 
+              {% if bandeco_data.dinner_nota >= 0.5 %}
+                <span class="fa fa-star checked"></span>
+              {% else %}
+                <span class="fa fa-star"></span>
+              {% endif %}
+              {% if bandeco_data.dinner_nota >= 1.5 %}
+                <span class="fa fa-star checked"></span>
+              {% else %}
+                <span class="fa fa-star"></span>
+              {% endif %}
+              {% if bandeco_data.dinner_nota >= 2.5 %}
+                <span class="fa fa-star checked"></span>
+              {% else %}
+                <span class="fa fa-star"></span>
+              {% endif %}
+              {% if bandeco_data.dinner_nota >= 3.5 %}
+                <span class="fa fa-star checked"></span>
+              {% else %}
+                <span class="fa fa-star"></span>
+              {% endif %}
+              {% if bandeco_data.dinner_nota >= 4.5 %}
+                <span class="fa fa-star checked"></span>
+              {% else %}
+                <span class="fa fa-star"></span>
+              {% endif %}
+            </p>
+            <ul class="menu_list">
+              {% for item in bandeco_data.dinner_menu %}
+                <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </article>
+      <hr class="line">
     </section>
     <section>
       <h2>Comentários</h2>
