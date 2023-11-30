@@ -21,4 +21,8 @@ class Migration(migrations.Migration):
             name='nota',
             field=models.IntegerField(default=0, validators=[django.core.validators.MinValueValidator(0, 'A nota não pode ser menor que 0'), django.core.validators.MaxValueValidator(5, 'A nota não pode ser maior que 5')]),
         ),
+        migrations.RemoveField(
+            model_name='bandeco',
+            name='description',
+        ),
     ]

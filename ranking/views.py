@@ -1,7 +1,7 @@
 from multiprocessing import context
 import time
 from django.db.models import Avg, F
-from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, redirect
 from django.urls import reverse
 from django.views import generic
 from .models import Bandeco, Item, Nota, Comentario
@@ -64,20 +64,20 @@ class BandecoListView(generic.ListView):
 
 
 class BandecoDetailView(generic.DetailView):
-    model = Bandeco
+    model=Bandeco
     template_name = "ranking/detail.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    def get(self, request, pk):
+        bandeco = get_object_or_404(Bandeco, pk=pk)
 
-        lunch_menu = get_api_data(self.object.name)["lunch_menu"]
-        lunch_itens = Item.objects.filter(bandeco=self.object, name__in=lunch_menu)
-        lunch_notas = Nota.objects.filter(bandeco=self.object, item__in=lunch_itens)
+        lunch_menu = get_api_data(bandeco.name)["lunch_menu"]
+        lunch_itens = Item.objects.filter(bandeco=bandeco, name__in=lunch_menu)
+        lunch_notas = Nota.objects.filter(bandeco=bandeco, item__in=lunch_itens)
         lunch_average = lunch_notas.aggregate(Avg("value"))
 
-        dinner_menu = get_api_data(self.object.name)["dinner_menu"]
-        dinner_itens = Item.objects.filter(bandeco=self.object, name__in=dinner_menu)
-        dinner_notas = Nota.objects.filter(bandeco=self.object, item__in=dinner_itens)
+        dinner_menu = get_api_data(bandeco.name)["dinner_menu"]
+        dinner_itens = Item.objects.filter(bandeco=bandeco, name__in=dinner_menu)
+        dinner_notas = Nota.objects.filter(bandeco=bandeco, item__in=dinner_itens)
         dinner_average = dinner_notas.aggregate(Avg("value"))
 
         bandeco_data = {
@@ -87,9 +87,28 @@ class BandecoDetailView(generic.DetailView):
             "dinner_nota": dinner_average["value__avg"],
         }
 
-        context["bandeco_data"] = bandeco_data
+        context = {
+            "bandeco": bandeco,
+            "bandeco_data": bandeco_data,
+            "comment_form": ComentarioForm(),
+        }
 
-        return context
+        return render(request, self.template_name, context)
+  
+    def post(self, request, pk):
+        bandeco = get_object_or_404(Bandeco, pk=pk)
+
+        # Check if the form is submitted for comment creation
+        if 'delete_comment_id' in request.POST:
+            comment_id = request.POST.get('delete_comment_id')
+            try:
+                comment = Comentario.objects.get(pk=comment_id, bandeco=bandeco)
+                comment.delete()
+            except Comentario.DoesNotExist:
+                # Handle the case where the comment does not exist
+                pass
+
+        return redirect('detail', pk=bandeco.pk)
 
 
 def create_comentario(request, bandeco_id):
