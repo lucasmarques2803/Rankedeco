@@ -16,7 +16,9 @@
       <ul class="bandeco_card">
         {% for bandeco_data in bandeco_data %}
           <li class="card">
-            <a href="{% url 'detail' bandeco_data.bandeco.id %}"><img src="{{ bandeco_data.bandeco.img_url }}" alt="Imagem de {{ bandeco_data.bandeco.name }}" /></a>
+            <a href="{% url 'detail' bandeco_data.bandeco.id %}" class="bandeco-image">
+              <img src="{{ bandeco_data.bandeco.img_url }}" alt="Imagem de {{ bandeco_data.bandeco.name }}" />
+            </a>
             <h2>{{ bandeco_data.bandeco.name }}</h2>
             <p>{{ bandeco_data.bandeco.endereco }}</p>
             <p>Telefone: {{ bandeco.contato }}</p>
