@@ -336,3 +336,8 @@ form li{
 .checked {
   color: orange;
 }
+
+.delete-comment-form {
+  border: none;
+  margin: 0;
+}

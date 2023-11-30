@@ -50,7 +50,7 @@
                 <button type="button" onclick="confirmDelete('{{ comentario.id }}')">Delete Comment</button>
               </figcaption>
               <blockquote>"{{ comentario.text }}"</blockquote>
-              <form method="post" action="{% url 'detail' pk=bandeco.pk %}" class="delete-comment-form-{{ comentario.id }}">
+              <form method="post" action="{% url 'detail' pk=bandeco.pk %}" class="delete-comment-form -comentario-{{ comentario.id }}">
                 {% csrf_token %}
                 <input type="hidden" name="delete_comment_id" value="{{ comentario.id }}">
               </form>
@@ -68,7 +68,7 @@
     function confirmDelete(commentId) {
       var result = confirm("Are you sure you want to delete this comment?");
       if (result) {
-        var form = document.querySelector('.delete-comment-form-' + commentId);
+        var form = document.querySelector('.delete-comment-form.-comentario-' + commentId);
         form.submit();
       }
     }
