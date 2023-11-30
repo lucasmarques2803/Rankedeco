@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}
   {{ bandeco.name }}
 {% endblock %}
@@ -10,16 +11,41 @@
   {% endfor %}
 {% endblock %}
 {% block content %}
-  <main>
+  <main class="detail">
     <section>
       <h1>{{ bandeco.name }}</h1>
-      <img src="{{ bandeco.img_url }}" alt="Imagem de {{ bandeco.name }}" />
       <p>{{ bandeco.description }}</p>
-      <p>Endereço: {{ bandeco.endereco }}</p>
-      <p>Telefone: {{ bandeco.contato }}</p>
-      <p>Horário de funcionamento: {{ bandeco.horarios }}</p>
-      <p>
-        Menu almoço: <span>Nota: {{ bandeco_data.lunch_nota }}</span>
+      <p class="endereco">{{bandeco.endereco}}</p>
+      <div class="stars_score">{% if bandeco_data.average_nota >= 0.5 %}
+              <span class="fa fa-star checked"></span>
+            {% else %}
+              <span class="fa fa-star"></span>
+            {% endif %}
+            {% if bandeco_data.average_nota >= 1.5 %}
+              <span class="fa fa-star checked"></span>
+            {% else %}
+              <span class="fa fa-star"></span>
+            {% endif %}
+            {% if bandeco_data.average_nota >= 2.5 %}
+              <span class="fa fa-star checked"></span>
+            {% else %}
+              <span class="fa fa-star"></span>
+            {% endif %}
+            {% if bandeco_data.average_nota >= 3.5 %}
+              <span class="fa fa-star checked"></span>
+            {% else %}
+              <span class="fa fa-star"></span>
+            {% endif %}
+            {% if bandeco_data.average_nota >= 4.5 %}
+              <span class="fa fa-star checked"></span>
+            {% else %}
+              <span class="fa fa-star"></span>
+            {% endif %}</div>
+      <img class="detail_img" src="{{ bandeco.img_url }}" alt="Imagem de {{ bandeco.name }}" />
+      <hr class="line">
+      <p><img class="icon" src="{% static 'images/telefones.png' %}" alt="telefone"/>Telefone: {{ bandeco.contato }}</p>
+      <p><img class="icon" src="{% static 'images/relogio.png' %}" alt="relogio"/>Horário de funcionamento: {{ bandeco.horarios }}</p>
+      <p><img class="icon" src="{% static 'images/menu.png' %}" alt="cardapio"/>Menu almoço: <span>Nota: {{ bandeco_data.lunch_nota }}</span>
       </p>
       <ul>
         {% for item in bandeco_data.lunch_menu %}
