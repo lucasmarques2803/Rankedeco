@@ -1,0 +1,46 @@
+[
+    {
+        "model": "ranking.bandeco",
+        "pk": 1,
+        "fields": {
+            "name": "Central",
+            "horarios": "Almoço: 11:15 às 14:15; Janta: 17:30 às 19:45",
+            "contato": "(11) 3091-3318",
+            "endereco": "Praça do Relógio Solar, travessa 8, no 300, Campus Butantã, São Paulo - SP",
+            "img_url": "https://uspdigital.usp.br/comumwebdev/imagens/cardapio/central.jpg"
+        }
+    },
+    {
+        "model": "ranking.bandeco",
+        "pk": 2,
+        "fields": {
+            "name": "Prefeitura",
+            "horarios": "Almoço: 11:15 às 14:15",
+            "contato": "(11) 3091-0495",
+            "endereco": "Av. Professor Almeida Prado, 1280, Campus Butantã, São Paulo - SP",
+            "img_url": "https://uspdigital.usp.br/comumwebdev/imagens/cardapio/puspc.jpg"
+        }
+    },
+    {
+        "model": "ranking.bandeco",
+        "pk": 3,
+        "fields": {
+            "name": "Fisica",
+            "horarios": "Almoço: 11:15 às 14:15; Janta: 17:30 às 19:45",
+            "contato": "(11) 3091-6711",
+            "endereco": "Rua do Matão, travessa R, no 187, Campus Butantã, São Paulo - SP",
+            "img_url": "https://uspdigital.usp.br/comumwebdev/imagens/cardapio/fisica.jpg"
+        }
+    },
+    {
+        "model": "ranking.bandeco",
+        "pk": 4,
+        "fields": {
+            "name": "Quimica",
+            "horarios": "Almoço: 11:15 às 14:15; Janta: 17:30 às 19:45",
+            "contato": "(11) 3927-8880",
+            "endereco": "Av. Lineu Prestes, 748 - Instituto de Químicas, Campus Butantã, São Paulo - SP",
+            "img_url": "https://uspdigital.usp.br/comumwebdev/imagens/cardapio/quimica.jpg"
+        }
+    }
+]

@@ -2,6 +2,13 @@
 {% block title %}
   {{ bandeco.name }}
 {% endblock %}
+{% block nav %}
+  {% for bandecos in bandecos %}
+    <li>
+      <a href="{% url 'detail' bandecos.id %}" data-text="{{ bandecos.name }}">{{ bandecos.name }}</a>
+    </li>
+  {% endfor %}
+{% endblock %}
 {% block content %}
   <main>
     <section>
@@ -11,13 +18,17 @@
       <p>Endereço: {{ bandeco.endereco }}</p>
       <p>Telefone: {{ bandeco.contato }}</p>
       <p>Horário de funcionamento: {{ bandeco.horarios }}</p>
-      <p>Menu almoço: <span>Nota: {{ bandeco_data.lunch_nota }}</span></p>
+      <p>
+        Menu almoço: <span>Nota: {{ bandeco_data.lunch_nota }}</span>
+      </p>
       <ul>
         {% for item in bandeco_data.lunch_menu %}
           <li>{{ item }}</li>
         {% endfor %}
       </ul>
-      <p>Menu janta: <span>Nota: {{ bandeco_data.dinner_nota }}</span></p>
+      <p>
+        Menu janta: <span>Nota: {{ bandeco_data.dinner_nota }}</span>
+      </p>
       <ul>
         {% for item in bandeco_data.dinner_menu %}
           <li>{{ item }}</li>

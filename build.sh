@@ -7,6 +7,7 @@ pip install -r requirements.txt
 python manage.py collectstatic --no-input
 # adicione linhas abaixo
 python manage.py migrate
+python manage.py loaddata bandecos
 
 # create superuser if missing
 cat <<EOF | python manage.py shell

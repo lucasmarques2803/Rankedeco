@@ -1,3 +1,4 @@
+from datetime import date
 from multiprocessing import context
 import time
 from django.db.models import Avg, F
@@ -10,17 +11,18 @@ import requests
 
 
 # Variáveis globais
-url = 'https://uspdigital.usp.br/rucard/servicos/menu/'
+url = 'https://uspdigital.usp.br/rucard/servicos/'
 hash = '596df9effde6f877717b4e81fdb2ca9f'
 restaurant_ids = {"Central": 6, "Prefeitura": 7, "Fisica": 8, "Quimica": 9}
 
 
 # Função utilitária para pegar o cardápio de um restaurante
 def get_api_data(restaurant: str) -> dict:
-    restaurant_request = {restaurant: requests.post(f"{url}{restaurant_ids[restaurant]}", data={"hash": hash})}
-    
-    lunch_menu = restaurant_request[restaurant].json()["meals"][0]["lunch"]["menu"].split("\n")
-    dinner_menu = restaurant_request[restaurant].json()["meals"][0]["dinner"]["menu"].split("\n")
+    restaurant_request = requests.post(f"{url}menu/{restaurant_ids[restaurant]}", data={"hash": hash})
+    meals = restaurant_request.json()["meals"]
+    meals_today = [meal for meal in meals if meal["date"] == date.today().strftime("%d/%m/%Y")][0]
+    lunch_menu = meals_today["lunch"]["menu"].split("\n")
+    dinner_menu = meals_today["dinner"]["menu"].split("\n")
 
     context = {
         "bandeco": restaurant,
