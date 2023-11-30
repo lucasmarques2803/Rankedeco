@@ -18,6 +18,11 @@ h1 {
 
 }
 
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
 main{
   margin-left: auto;
   margin-right: auto;
@@ -26,14 +31,44 @@ main{
   flex-grow: 1;
 }
 
+figcaption{
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+}
+
+blockquote{
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+li{
+  list-style-type: none;
+}
+
+.ul_comment{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.detail_article{
+  display: flex;
+  flex-direction: row;
+  left: 0;
+  margin-top: 3rem;
+}
+
 .detail_img{
   width: 60%;
-  margin-top: 3rem;
   border-radius: 1rem;
 }
 
 hr.line{
   border-top: 1px dotted;
+  margin-top: 1rem;
+  color: #333;
 }
 
 .icon{
@@ -47,6 +82,69 @@ hr.line{
   font-weight: lighter;
   text-decoration-line: underline;
   color: #333;
+}
+
+.menus{
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.menu_list{
+  list-style-type: circle;
+  margin-left: 2rem;
+  margin-top: 0.5rem;
+}
+
+.comment_head{
+  margin-top: 2rem;
+  width: 22rem;
+  text-align: justify;
+  border: 1px solid #333;
+  border-radius: 1rem;
+}
+
+.comment_button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6rem;
+  width: 9rem;
+  height: 2rem;
+  padding: 0.8rem;
+  border-radius: 10rem;
+  background-color: #0cf;
+  color: white;
+  position:relative;
+  margin-bottom: 1rem;
+}
+
+.delete_button{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: bold;
+  width: 10rem;
+  height: 3.6rem;
+  padding: 0.8rem;
+  border-radius: 10rem;
+  background-color: red;
+  color: white;
+  position:relative;
+  cursor: pointer;
+  border: none;
+}
+
+.comment_buttons_align{
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-around;
+  margin-top: 0.5rem;
 }
 
 .bandeco_card {
@@ -370,6 +468,6 @@ form li{
   margin: 0;
 }
 
-.stars_score{
+.starts_score{
   margin-top: 0.7rem;
 }
