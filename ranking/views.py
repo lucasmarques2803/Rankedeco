@@ -9,7 +9,7 @@ from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, re
 from django.urls import reverse
 from django.views import generic
 from .models import Bandeco, Item, Nota, Comentario
-from .forms import ComentarioForm
+from .forms import ComentarioForm, ComentarioUpdateForm
 import requests
 
 
@@ -159,7 +159,7 @@ def create_comentario(request, bandeco_id):
 class ComentarioUpdateView(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateView):
     model = Comentario
     template_name = 'ranking/comment_update.html'
-    form_class = ComentarioForm
+    form_class = ComentarioUpdateForm
     permission_required = 'ranking.change_comentario'
 
     def has_permission(self) -> bool:
