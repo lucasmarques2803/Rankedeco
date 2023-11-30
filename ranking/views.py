@@ -111,6 +111,7 @@ class BandecoDetailView(generic.DetailView):
             try:
                 comment = Comentario.objects.get(pk=comment_id, bandeco=bandeco)
                 comment.text = ""
+                comment.save()
             except Comentario.DoesNotExist:
                 # Handle the case where the comment does not exist
                 pass
