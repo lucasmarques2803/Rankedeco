@@ -4,15 +4,14 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Bandeco(models.Model):
-    name = models.CharField(max_length=255)
-    horarios = models.CharField(max_length=255)
-    contato = models.CharField(max_length=255)
-    endereco = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, default="")
+    horarios = models.CharField(max_length=255, default="")
+    contato = models.CharField(max_length=255, default="")
+    endereco = models.CharField(max_length=255, default="")
     img_url = models.URLField(default="")
 
     def __str__(self):
         return f'{self.name}'
-
 
 
 class Item(models.Model):
@@ -33,7 +32,7 @@ class Nota(models.Model):
 
 
 class Comentario(models.Model):
-    date = models.DateTimeField(auto_now=True)
+    date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.CASCADE)
     text = models.CharField(max_length=255)
