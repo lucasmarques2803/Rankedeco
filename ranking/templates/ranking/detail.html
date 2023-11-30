@@ -84,27 +84,27 @@
           <div>
             <p>
               Menu jantar: 
-              {% if bandeco_data.dinner_nota >= 0.5 %}
+              {% if comentario.nota >= 0.5 %}
                 <span class="fa fa-star checked"></span>
               {% else %}
                 <span class="fa fa-star"></span>
               {% endif %}
-              {% if bandeco_data.dinner_nota >= 1.5 %}
+              {% if comentario.nota >= 1.5 %}
                 <span class="fa fa-star checked"></span>
               {% else %}
                 <span class="fa fa-star"></span>
               {% endif %}
-              {% if bandeco_data.dinner_nota >= 2.5 %}
+              {% if comentario.nota >= 2.5 %}
                 <span class="fa fa-star checked"></span>
               {% else %}
                 <span class="fa fa-star"></span>
               {% endif %}
-              {% if bandeco_data.dinner_nota >= 3.5 %}
+              {% if comentario.nota >= 3.5 %}
                 <span class="fa fa-star checked"></span>
               {% else %}
                 <span class="fa fa-star"></span>
               {% endif %}
-              {% if bandeco_data.dinner_nota >= 4.5 %}
+              {% if comentario.nota >= 4.5 %}
                 <span class="fa fa-star checked"></span>
               {% else %}
                 <span class="fa fa-star"></span>
@@ -122,31 +122,62 @@
     </section>
     <section>
       <h2>Comentários</h2>
-      <ul>
         <li>
-          <a href="{% url 'comment' bandeco.id %}">Comentar</a>
+          <a class="comment_button" href="{% url 'comment' bandeco.id %}">Comentar +</a>
         </li>
+      <ul class="ul_comment">
+        
         {% if bandeco.comentario_set.all %}
           {% for comentario in bandeco.comentario_set.all %}
-            {% if comentario.text %}
-              <figure>
-                <figcaption>
+              <figure class="comment_head">
+                <figcaption >
+                  
                   <strong>{{ comentario.author }}</strong> ({{ comentario.date|date:'d/m/Y' }})
-                  <strong>{{ comentario.nota }}</strong>
+                  <div class="stars_score">
+                    {% if comentario.nota >= 0.5 %}
+                      <span class="fa fa-star checked"></span>
+                    {% else %}
+                      <span class="fa fa-star"></span>
+                    {% endif %}
+                    {% if comentario.nota >= 1.5 %}
+                      <span class="fa fa-star checked"></span>
+                    {% else %}
+                      <span class="fa fa-star"></span>
+                    {% endif %}
+                    {% if comentario.nota >= 2.5 %}
+                      <span class="fa fa-star checked"></span>
+                    {% else %}
+                      <span class="fa fa-star"></span>
+                    {% endif %}
+                    {% if comentario.nota >= 3.5 %}
+                      <span class="fa fa-star checked"></span>
+                    {% else %}
+                      <span class="fa fa-star"></span>
+                    {% endif %}
+                    {% if comentario.nota >= 4.5 %}
+                      <span class="fa fa-star checked"></span>
+                    {% else %}
+                      <span class="fa fa-star"></span>
+                    {% endif %}
+                  </div>
+                  
                 </figcaption>
-                <blockquote>"{{ comentario.text }}"</blockquote>
-              </figure>
+                {% if comentario.text %}
+                <blockquote>- "{{ comentario.text }}"</blockquote>
+              <div class="comment_buttons_align">
               {% if user.is_authenticated and user.username == comentario.author.username %}
-                <a href="{% url 'comment_update' comentario.id %}">Editar</a>
+                <a class="comment_button" href="{% url 'comment_update' comentario.id %}">Editar</a>
               {% endif %}
+              
               {% if user.is_authenticated and user_belongs_to_moderators or user.username == comentario.author.username %}
-                <button type="button" onclick="confirmDelete('{{ comentario.id }}')">Apagar</button>
-                <form method="post" action="{% url 'detail' bandeco.id %}" class="delete-comment-form -comentario-{{ comentario.id }}">
-                  {% csrf_token %}
-                  <input type="hidden" name="delete_comment_id" value="{{ comentario.id }}" />
-                </form>
+                  <button class="delete_button" onclick="confirmDelete('{{ comentario.id }}')">Apagar<form method="post" action="{% url 'detail' bandeco.id %}" class="delete-comment-form -comentario-{{ comentario.id }}"></form></button>
+                    {% csrf_token %}
+                    <input type="hidden" name="delete_comment_id" value="{{ comentario.id }}" />
+                  </form>
               {% endif %}
+              </div>
             {% endif %}
+          </figure>
           {% endfor %}
         {% else %}
           <h6>Ainda não existe nenhum comentário para o bandeco.</h6>
