@@ -60,10 +60,8 @@ main{
 .card img {
   width: 27rem;
   height: 27rem;
-  border-radius: 1rem;
   margin: auto;
   transition: transform 0.3s; /* Adicione uma transição suave para o efeito de zoom */
-  max-width: 100%; /* Garante que a imagem não ultrapasse a largura do contêiner */
   order: -1;
 }
 
@@ -78,7 +76,7 @@ main{
 }
 
 .card img:hover {
-  transform: scale(1.05); /* Ajuste o valor de escala conforme necessário para o efeito desejado */
+  transform: scale(1.05);
 }
 
 .main-logo {
