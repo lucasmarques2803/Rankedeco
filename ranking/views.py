@@ -96,6 +96,7 @@ class BandecoDetailView(generic.DetailView):
 
         context = {
             "bandeco": bandeco,
+            "bandecos": Bandeco.objects.all(),
             "bandeco_data": bandeco_data,
             "user_belongs_to_moderators": request.user.groups.filter(name="moderadores").exists(),
         }
