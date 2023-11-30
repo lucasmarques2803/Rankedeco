@@ -28,7 +28,6 @@ def get_api_data(restaurant: str) -> dict:
     dinner_menu = meals_today["dinner"]["menu"].split("\n")
 
     context = {
-        "bandeco": restaurant,
         "lunch_menu": lunch_menu,
         "dinner_menu": dinner_menu,
     }
