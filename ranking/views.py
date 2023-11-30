@@ -1,6 +1,7 @@
 from datetime import date
 from multiprocessing import context
 import time
+from typing import Any
 from django.db.models import Avg, F
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 from django.urls import reverse
@@ -130,3 +131,19 @@ def create_comentario(request, bandeco_id):
     form = ComentarioForm()
     context = {'form': form, 'bandeco': bandeco}
     return render(request, 'ranking/comment.html', context)
+
+
+class ComentarioUpdateView(generic.UpdateView):
+    model = Comentario
+    fields = ['text']
+    template_name = 'ranking/comment_update.html'
+
+    def get_success_url(self):
+        return reverse('detail', args=(self.object.bandeco.id,))
+    
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["bandeco"] = self.object.bandeco
+        
+        return context
+    

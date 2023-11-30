@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}
-  Comentar
+  Editar Comentário
 {% endblock %}
 {% block content %}
   <main>
-    <h2>Comentar no Bandeco {{ bandeco.name }}</h2>
-    <form method="POST" action="{% url 'comment' bandeco.id %}">
+    <h2>Editar comentário no Bandeco {{ bandeco.name }}</h2>
+    <form method="POST" action="{% url 'comment_update' comentario.id %}">
       {% csrf_token %}
       {{ form.as_p }}
       <a href="{% url 'detail' bandeco.id %} ">Cancelar</a>

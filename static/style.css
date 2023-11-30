@@ -1,6 +1,11 @@
 :root {
   font-size: 10px;
   font-family: 'Urbanist', sans-serif;
+  height: 100%;
+}
+
+body {
+  height: 100%;
 }
 
 * {
@@ -213,6 +218,9 @@ nav li:nth-child(6n + 4) a:hover:before {
 
 .main-footer {
   display: flex;
+  position: fixed ;
+  bottom: 0;
+  left: 50%;
   justify-content: center;
   align-items: center;
   font-weight: 400;

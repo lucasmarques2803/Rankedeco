@@ -49,6 +49,7 @@
                 <strong>{{ comentario.nota }}</strong>
               </figcaption>
               <blockquote>"{{ comentario.text }}"</blockquote>
+              <a href="{% url 'comment_update' comentario.id %}">Editar</a>
             </figure>
           {% endfor %}
         {% else %}
