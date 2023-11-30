@@ -26,6 +26,29 @@ main{
   flex-grow: 1;
 }
 
+.detail_img{
+  width: 60%;
+  margin-top: 3rem;
+  border-radius: 1rem;
+}
+
+hr.line{
+  border-top: 1px dotted;
+}
+
+.icon{
+  width: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.endereco{
+  margin-top: 1.5rem;
+  font-family: "Trip Sans VF","Trip Sans",Arial,sans-serif;
+  font-weight: lighter;
+  text-decoration-line: underline;
+  color: #333;
+}
+
 .bandeco_card {
   display: flex;
   flex-wrap: wrap;
@@ -345,4 +368,8 @@ form li{
 .delete-comment-form {
   border: none;
   margin: 0;
+}
+
+.stars_score{
+  margin-top: 0.7rem;
 }

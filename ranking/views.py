@@ -28,7 +28,6 @@ def get_api_data(restaurant: str) -> dict:
     dinner_menu = meals_today["dinner"]["menu"].split("\n")
 
     context = {
-        "bandeco": restaurant,
         "lunch_menu": lunch_menu,
         "dinner_menu": dinner_menu,
     }
@@ -64,8 +63,6 @@ class BandecoListView(generic.ListView):
             }
 
             context["bandeco_data"].append(bandeco_data)
-        
-        print(context["bandeco_data"][0])
 
         return context
 
