@@ -1,3 +1,4 @@
+from django import forms
 from django.forms import ModelForm
 from .models import Comentario
 
@@ -9,6 +10,22 @@ class ComentarioForm(ModelForm):
             'nota',
         ]
         labels = {
-            'text': 'Texto',
+            'text': 'Comentário',
             'nota': 'Nota',
+        }
+        widgets = {
+            'text': forms.TextInput(attrs={'placeholder': 'Opcional'}),
+        }
+
+class ComentarioUpdateForm(ModelForm):
+    class Meta:
+        model = Comentario
+        fields = [
+            'text',
+        ]
+        labels = {
+            'text': 'Comentário',
+        }
+        widgets = {
+            'text': forms.TextInput(attrs={'placeholder': 'Opcional'}),
         }

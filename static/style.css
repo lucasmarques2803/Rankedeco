@@ -267,6 +267,10 @@ input[type="password"] {
   background-color: rgb(206, 231, 238);
 }
 
+input::placeholder {
+  color: #bbbbbb;
+}
+
 form li{
   display: none;
 }

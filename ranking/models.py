@@ -35,7 +35,7 @@ class Comentario(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.CASCADE)
-    text = models.CharField(max_length=255)
+    text = models.CharField(max_length=255, blank=True)
     bandeco = models.ForeignKey(Bandeco, on_delete=models.CASCADE)
     nota = models.IntegerField(
         default=0,

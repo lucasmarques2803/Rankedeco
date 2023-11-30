@@ -43,22 +43,24 @@
         </li>
         {% if bandeco.comentario_set.all %}
           {% for comentario in bandeco.comentario_set.all %}
-            <figure>
-              <figcaption>
-                <strong>{{ comentario.author }}</strong> ({{ comentario.date|date:'d/m/Y' }})
-                <strong>{{ comentario.nota }}</strong>
-              </figcaption>
-              <blockquote>"{{ comentario.text }}"</blockquote>
-            </figure>
-            {% if user.is_authenticated and user.username == comentario.author.username %}
-              <a href="{% url 'comment_update' comentario.id %}">Editar</a>
-            {% endif %}
-            {% if user.is_authenticated and user_belongs_to_moderators or user.username == comentario.author.username %}
-              <button type="button" onclick="confirmDelete('{{ comentario.id }}')">Apagar</button>
-              <form method="post" action="{% url 'detail' bandeco.id %}" class="delete-comment-form -comentario-{{ comentario.id }}">
-                {% csrf_token %}
-                <input type="hidden" name="delete_comment_id" value="{{ comentario.id }}" />
-              </form>
+            {% if comentario.text %}
+              <figure>
+                <figcaption>
+                  <strong>{{ comentario.author }}</strong> ({{ comentario.date|date:'d/m/Y' }})
+                  <strong>{{ comentario.nota }}</strong>
+                </figcaption>
+                <blockquote>"{{ comentario.text }}"</blockquote>
+              </figure>
+              {% if user.is_authenticated and user.username == comentario.author.username %}
+                <a href="{% url 'comment_update' comentario.id %}">Editar</a>
+              {% endif %}
+              {% if user.is_authenticated and user_belongs_to_moderators or user.username == comentario.author.username %}
+                <button type="button" onclick="confirmDelete('{{ comentario.id }}')">Apagar</button>
+                <form method="post" action="{% url 'detail' bandeco.id %}" class="delete-comment-form -comentario-{{ comentario.id }}">
+                  {% csrf_token %}
+                  <input type="hidden" name="delete_comment_id" value="{{ comentario.id }}" />
+                </form>
+              {% endif %}
             {% endif %}
           {% endfor %}
         {% else %}
@@ -70,9 +72,9 @@
 
   <script>
     function confirmDelete(commentId) {
-      var result = confirm('Tem certeza que deseja apagar este comentário?')
+      const result = confirm('Tem certeza que deseja apagar este comentário?')
       if (result) {
-        var form = document.querySelector('.delete-comment-form.-comentario-' + commentId)
+        const form = document.querySelector('.delete-comment-form.-comentario-' + commentId)
         form.submit()
       }
     }

@@ -159,9 +159,12 @@ def create_comentario(request, bandeco_id):
 
 class ComentarioUpdateView(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateView):
     model = Comentario
-    fields = ['text']
     template_name = 'ranking/comment_update.html'
-    permission_required = 'ranking.change_comentario and request.user == object.author'
+    form_class = ComentarioForm
+    permission_required = 'ranking.change_comentario'
+
+    def has_permission(self) -> bool:
+        return super().has_permission() and self.request.user == self.get_object().author
 
     def get_success_url(self):
         return reverse('detail', args=(self.object.bandeco.id,))
