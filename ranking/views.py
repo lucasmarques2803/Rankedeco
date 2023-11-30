@@ -110,7 +110,7 @@ class BandecoDetailView(generic.DetailView):
             comment_id = request.POST.get('delete_comment_id')
             try:
                 comment = Comentario.objects.get(pk=comment_id, bandeco=bandeco)
-                comment.delete()
+                comment.text = ""
             except Comentario.DoesNotExist:
                 # Handle the case where the comment does not exist
                 pass
