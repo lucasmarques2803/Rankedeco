@@ -21,6 +21,14 @@
             <p>{{ bandeco_data.bandeco.endereco }}</p>
             <p>Telefone: {{ bandeco.contato }}</p>
             <p>Horário de funcionamento: {{ bandeco.horarios }}</p>
+
+            <h3>Cardápio:</h3>
+            <ul>
+              {% for item in bandeco_data.menu %}
+                <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+
             {% if bandeco_data.average_nota >= 0.5 %}
               <span class="fa fa-star checked"></span>
             {% else %}
