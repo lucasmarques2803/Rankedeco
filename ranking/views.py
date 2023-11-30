@@ -64,8 +64,6 @@ class BandecoListView(generic.ListView):
             }
 
             context["bandeco_data"].append(bandeco_data)
-        
-        print(context["bandeco_data"][0])
 
         return context
 
