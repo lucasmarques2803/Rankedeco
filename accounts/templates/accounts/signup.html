@@ -7,7 +7,7 @@ Criar Usuário
 {% block content %}
 
 <form method="post">
-    <h2 class="login">Criar Usuário</h2>
+    <h1 class="login_h1">Criar Usuário</h1>
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="signup_button">Criar</button>

@@ -331,6 +331,7 @@ form li{
   align-items: center;
   justify-content: center;
   font-size: 1.6rem;
+  margin-bottom: 1rem;
 }
 
 .checked {

@@ -2,6 +2,8 @@ from datetime import date
 from multiprocessing import context
 import time
 from typing import Any
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.db.models import Avg, F
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, redirect
 from django.urls import reverse
@@ -62,6 +64,8 @@ class BandecoListView(generic.ListView):
             }
 
             context["bandeco_data"].append(bandeco_data)
+        
+        print(context["bandeco_data"][0])
 
         return context
 
@@ -93,7 +97,7 @@ class BandecoDetailView(generic.DetailView):
         context = {
             "bandeco": bandeco,
             "bandeco_data": bandeco_data,
-            "comment_form": ComentarioForm(),
+            "user_belongs_to_moderators": request.user.groups.filter(name="moderadores").exists(),
         }
 
         return render(request, self.template_name, context)
@@ -114,6 +118,8 @@ class BandecoDetailView(generic.DetailView):
         return redirect('detail', pk=bandeco.pk)
 
 
+@login_required
+@permission_required('ranking.add_comentario')
 def create_comentario(request, bandeco_id):
     bandeco = get_object_or_404(Bandeco, pk=bandeco_id)
     
@@ -151,10 +157,11 @@ def create_comentario(request, bandeco_id):
     return render(request, 'ranking/comment.html', context)
 
 
-class ComentarioUpdateView(generic.UpdateView):
+class ComentarioUpdateView(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateView):
     model = Comentario
     fields = ['text']
     template_name = 'ranking/comment_update.html'
+    permission_required = 'ranking.change_comentario and request.user == object.author'
 
     def get_success_url(self):
         return reverse('detail', args=(self.object.bandeco.id,))

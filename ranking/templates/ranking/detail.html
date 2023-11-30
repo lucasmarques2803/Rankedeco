@@ -47,15 +47,19 @@
               <figcaption>
                 <strong>{{ comentario.author }}</strong> ({{ comentario.date|date:'d/m/Y' }})
                 <strong>{{ comentario.nota }}</strong>
-                <button type="button" onclick="confirmDelete('{{ comentario.id }}')">Delete Comment</button>
               </figcaption>
               <blockquote>"{{ comentario.text }}"</blockquote>
-              <form method="post" action="{% url 'detail' pk=bandeco.pk %}" class="delete-comment-form -comentario-{{ comentario.id }}">
-                {% csrf_token %}
-                <input type="hidden" name="delete_comment_id" value="{{ comentario.id }}">
-              </form>
-              <a href="{% url 'comment_update' comentario.id %}">Editar</a>
             </figure>
+            {% if user.is_authenticated and user.username == comentario.author.username %}
+              <a href="{% url 'comment_update' comentario.id %}">Editar</a>
+            {% endif %}
+            {% if user.is_authenticated and user_belongs_to_moderators or user.username == comentario.author.username %}
+              <button type="button" onclick="confirmDelete('{{ comentario.id }}')">Apagar</button>
+              <form method="post" action="{% url 'detail' bandeco.id %}" class="delete-comment-form -comentario-{{ comentario.id }}">
+                {% csrf_token %}
+                <input type="hidden" name="delete_comment_id" value="{{ comentario.id }}" />
+              </form>
+            {% endif %}
           {% endfor %}
         {% else %}
           <h6>Ainda não existe nenhum comentário para o bandeco.</h6>
@@ -66,10 +70,10 @@
 
   <script>
     function confirmDelete(commentId) {
-      var result = confirm("Are you sure you want to delete this comment?");
+      var result = confirm('Tem certeza que deseja apagar este comentário?')
       if (result) {
-        var form = document.querySelector('.delete-comment-form.-comentario-' + commentId);
-        form.submit();
+        var form = document.querySelector('.delete-comment-form.-comentario-' + commentId)
+        form.submit()
       }
     }
   </script>
