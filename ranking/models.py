@@ -42,6 +42,9 @@ class Comentario(models.Model):
         validators=[MinValueValidator(0, "A nota não pode ser menor que 0"), MaxValueValidator(5, "A nota não pode ser maior que 5")]
     )
 
+    class Meta:
+        ordering = ['-date',]
+
     def __str__(self):
         return f'{self.text} - ({self.author.username})'
 
