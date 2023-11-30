@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "ranking.apps.RankingConfig",
     "accounts.apps.AccountsConfig",
+    "rest_framework",
+    "api.apps.ApiConfig",
+    
 ]
 
 MIDDLEWARE = [
