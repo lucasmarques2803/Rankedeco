@@ -60,9 +60,17 @@ li{
   margin-top: 3rem;
 }
 
-.detail_img{
+.detail_img {
   width: 60%;
+  height: auto;
   border-radius: 1rem;
+}
+
+@media (max-width: 50rem) {
+  .detail_img {
+    width: 50rem;
+    height: 27rem;
+  }
 }
 
 hr.line{
@@ -73,6 +81,7 @@ hr.line{
 
 .icon{
   width: 1.5rem;
+  height: auto;
   margin-right: 0.5rem;
 }
 
