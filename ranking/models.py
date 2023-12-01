@@ -18,13 +18,13 @@ class Item(models.Model):
     name = models.CharField(max_length=255)
     bandeco = models.ManyToManyField(Bandeco, through="Nota")
     def __str__(self):
-        return f'{self.name} - ({self.bandeco.name})'
+        return f'{self.name}'
 
 
 class Nota(models.Model):
     bandeco = models.ForeignKey(Bandeco, on_delete=models.CASCADE)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    value = models.PositiveSmallIntegerField(default=0)
+    value = models.FloatField(default=0)
     count = models.PositiveIntegerField(default=0)
 
     def __str__(self):
