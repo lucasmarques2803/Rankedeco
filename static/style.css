@@ -477,6 +477,16 @@ form li{
   margin-top: 0.7rem;
 }
 
+.error{
+  display: flex;
+  flex-direction: column;
+  color: red;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+}
 .average_nota {
   margin-left: 1rem;
 }
