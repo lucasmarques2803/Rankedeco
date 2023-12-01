@@ -84,11 +84,21 @@ class BandecoDetailView(generic.DetailView):
         dinner_notas = Nota.objects.filter(bandeco=bandeco, item__in=dinner_itens)
         dinner_average = dinner_notas.aggregate(Avg("value"))
 
+        if time.localtime().tm_hour < 15:
+            menu = lunch_menu
+        else:
+            menu = dinner_menu
+
+        itens = Item.objects.filter(bandeco=bandeco, name__in=menu)
+        notas = Nota.objects.filter(bandeco=bandeco, item__in=itens)
+        average = notas.aggregate(Avg("value"))
+
         bandeco_data = {
             "lunch_menu": lunch_menu,
             "dinner_menu": dinner_menu,
             "lunch_nota": lunch_average["value__avg"],
             "dinner_nota": dinner_average["value__avg"],
+            "average_nota": average["value__avg"],
         }
 
         context = {
@@ -141,17 +151,9 @@ def create_comentario(request, bandeco_id):
 
             for menu_item in menu:
                 item, created = Item.objects.get_or_create(name=menu_item)
-                print("item", item)
                 nota, created = Nota.objects.get_or_create(bandeco=bandeco, item=item)
-                print("nota", nota)
-                print("nota value antigo", nota.value)
-                print("nota*count", nota.value * nota.count)
-                print("nota.value*nota.count+comentario_nota", nota.value * nota.count + comentario_nota)
-                print("nota.count antigo", nota.count) 
                 nota.value = (nota.value * nota.count + comentario_nota) / (nota.count + 1)
-                print("valor nota", nota.value)
                 nota.count = nota.count + 1
-                print("count", nota.count)
                 nota.save()
 
             return HttpResponseRedirect(
