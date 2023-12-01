@@ -21,8 +21,7 @@
             <div class="bandeco-info">
               <h2>{{ current_bandeco.bandeco.name }}</h2>
               <p>{{ current_bandeco.bandeco.endereco }}</p>
-              <p>Telefone: {{ bandeco.contato }}</p>
-              <p>Horário de funcionamento: {{ bandeco.horarios }}</p>
+              <p>Telefone: {{ current_bandeco.bandeco.contato }}</p>
 
               {% if current_bandeco.average_nota >= 0.5 %}
                 <span class="fa fa-star checked"></span>

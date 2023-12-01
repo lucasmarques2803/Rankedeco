@@ -146,7 +146,7 @@ hr.line{
   gap: 1rem;
 }
 
-.bandeco_card {
+.bandecos-card {
   display: flex;
   flex-wrap: wrap;
   margin-top: 3rem;
@@ -154,18 +154,12 @@ hr.line{
 
 .card {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
   align-items: center;
-  width: 80%;
   height: auto;
-  margin: auto;
-  border-radius: 1rem;
-  color: black;
+  margin: 1rem;
   font-size: 1.5rem;
   font-weight: lighter;
   text-align: justify;
-  margin: 1rem;
 }
 
 .card h2{
@@ -178,19 +172,16 @@ hr.line{
 .card img {
   width: 27rem;
   height: 27rem;
-  margin: auto;
   transition: transform 0.3s; /* Adicione uma transição suave para o efeito de zoom */
-  order: -1;
 }
 
 .card .bandeco-info {
-  order: 1;
   margin: 1rem;
 }
 
 .card .menu-info {
-  order: 2;
   margin: 1rem;
+  width: 13rem;
 }
 
 .card img:hover {
