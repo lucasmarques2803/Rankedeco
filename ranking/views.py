@@ -151,17 +151,9 @@ def create_comentario(request, bandeco_id):
 
             for menu_item in menu:
                 item, created = Item.objects.get_or_create(name=menu_item)
-                print("item", item)
                 nota, created = Nota.objects.get_or_create(bandeco=bandeco, item=item)
-                print("nota", nota)
-                print("nota value antigo", nota.value)
-                print("nota*count", nota.value * nota.count)
-                print("nota.value*nota.count+comentario_nota", nota.value * nota.count + comentario_nota)
-                print("nota.count antigo", nota.count) 
                 nota.value = (nota.value * nota.count + comentario_nota) / (nota.count + 1)
-                print("valor nota", nota.value)
                 nota.count = nota.count + 1
-                print("count", nota.count)
                 nota.save()
 
             return HttpResponseRedirect(
