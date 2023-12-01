@@ -13,54 +13,55 @@
   <main>
     <h1>Página Inicial</h1>
     {% if bandeco_list %}
-      <ul class="bandeco_card">
-        {% for bandeco_data in bandeco_data %}
+      <ul class="bandecos-card">
+        {% for current_bandeco in bandeco_data %}
           <li class="card">
-            <a href="{% url 'detail' bandeco_data.bandeco.id %}"><img src="{{ bandeco_data.bandeco.img_url }}" alt="Imagem de {{ bandeco_data.bandeco.name }}" /></a>
-            <h2>{{ bandeco_data.bandeco.name }}</h2>
-            <p>{{ bandeco_data.bandeco.endereco }}</p>
-            <p>Telefone: {{ bandeco.contato }}</p>
-            <p>Horário de funcionamento: {{ bandeco.horarios }}</p>
+            <a href="{% url 'detail' current_bandeco.bandeco.id %}" class="bandeco-image">
+              <img src="{{ current_bandeco.bandeco.img_url }}" alt="Imagem de {{ current_bandeco.bandeco.name }}" />
+            </a>
+            
+            <div class="bandeco-info">
+              <h2>{{ current_bandeco.bandeco.name }}</h2>
+              <p>{{ current_bandeco.bandeco.endereco }}</p>
+              <p>Telefone: {{ bandeco.contato }}</p>
+              <p>Horário de funcionamento: {{ bandeco.horarios }}</p>
 
-            <h3>Cardápio:</h3>
-            <ul>
-              {% for item in bandeco_data.menu %}
-                <li>{{ item }}</li>
-              {% endfor %}
-            </ul>
-
-            <div class="stars_score">
-              {% if bandeco_data.average_nota >= 0.5 %}
+              {% if current_bandeco.average_nota >= 0.5 %}
                 <span class="fa fa-star checked"></span>
               {% else %}
                 <span class="fa fa-star"></span>
               {% endif %}
-              {% if bandeco_data.average_nota >= 1.5 %}
+              {% if current_bandeco.average_nota >= 1.5 %}
                 <span class="fa fa-star checked"></span>
               {% else %}
                 <span class="fa fa-star"></span>
               {% endif %}
-              {% if bandeco_data.average_nota >= 2.5 %}
+              {% if current_bandeco.average_nota >= 2.5 %}
                 <span class="fa fa-star checked"></span>
               {% else %}
                 <span class="fa fa-star"></span>
               {% endif %}
-              {% if bandeco_data.average_nota >= 3.5 %}
+              {% if current_bandeco.average_nota >= 3.5 %}
                 <span class="fa fa-star checked"></span>
               {% else %}
                 <span class="fa fa-star"></span>
               {% endif %}
-              {% if bandeco_data.average_nota >= 4.5 %}
+              {% if current_bandeco.average_nota >= 4.5 %}
                 <span class="fa fa-star checked"></span>
               {% else %}
                 <span class="fa fa-star"></span>
-              {% endif %}
-              {% if bandeco_data.average_nota %}
-                <span class="average_nota">{{ bandeco_data.average_nota|floatformat:1 }}/5,0</span>
-              {% else %}
-                <span class="average_nota">0,0/5,0</span>
               {% endif %}
             </div>
+
+            <div class="menu-info">
+              <h3>Cardápio:</h3>
+              <ul>
+                {% for item in current_bandeco.menu %}
+                  <li>{{ item }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+
           </li>
         {% endfor %}
       </ul>
