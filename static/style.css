@@ -156,13 +156,19 @@ hr.line{
   display: flex;
   align-items: center;
   height: auto;
-  margin: 1rem;
+  width: 100%;
   font-size: 1.5rem;
   font-weight: lighter;
   text-align: justify;
+  margin-bottom: 1rem;
 }
 
-.card h2{
+.card .info-container {
+  display: flex;
+  margin-left: 1rem;
+}
+
+.card h2 {
   display: flex;
   font-size: 2rem;
   margin-top: 1rem;
@@ -172,16 +178,13 @@ hr.line{
 .card img {
   width: 27rem;
   height: 27rem;
-  transition: transform 0.3s; /* Adicione uma transição suave para o efeito de zoom */
+  transition: transform 0.3s;
 }
 
-.card .bandeco-info {
-  margin: 1rem;
-}
-
-.card .menu-info {
-  margin: 1rem;
-  width: 13rem;
+.card .bandeco-info{
+  width: 25rem;
+  flex-wrap: wrap;
+  margin-right: 3rem;
 }
 
 .card img:hover {

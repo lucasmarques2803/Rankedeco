@@ -17,51 +17,52 @@
         {% for current_bandeco in bandeco_data %}
           <li class="card">
             <a href="{% url 'detail' current_bandeco.bandeco.id %}" class="bandeco-image"><img src="{{ current_bandeco.bandeco.img_url }}" alt="Imagem de {{ current_bandeco.bandeco.name }}" /></a>
+            <div class="info-container">
+              <div class="bandeco-info">
+                <h2>{{ current_bandeco.bandeco.name }}</h2>
+                <p>{{ current_bandeco.bandeco.endereco }}</p>
+                <p>Telefone: {{ current_bandeco.bandeco.contato }}</p>
 
-            <div class="bandeco-info">
-              <h2>{{ current_bandeco.bandeco.name }}</h2>
-              <p>{{ current_bandeco.bandeco.endereco }}</p>
-              <p>Telefone: {{ current_bandeco.bandeco.contato }}</p>
+                {% if current_bandeco.average_nota >= 0.5 %}
+                  <span class="fa fa-star checked"></span>
+                {% else %}
+                  <span class="fa fa-star"></span>
+                {% endif %}
+                {% if current_bandeco.average_nota >= 1.5 %}
+                  <span class="fa fa-star checked"></span>
+                {% else %}
+                  <span class="fa fa-star"></span>
+                {% endif %}
+                {% if current_bandeco.average_nota >= 2.5 %}
+                  <span class="fa fa-star checked"></span>
+                {% else %}
+                  <span class="fa fa-star"></span>
+                {% endif %}
+                {% if current_bandeco.average_nota >= 3.5 %}
+                  <span class="fa fa-star checked"></span>
+                {% else %}
+                  <span class="fa fa-star"></span>
+                {% endif %}
+                {% if current_bandeco.average_nota >= 4.5 %}
+                  <span class="fa fa-star checked"></span>
+                {% else %}
+                  <span class="fa fa-star"></span>
+                {% endif %}
+                {% if current_bandeco.average_nota %}
+                  <span class="average_nota">{{ current_bandeco.average_nota|floatformat:1 }}/5,0</span>
+                {% else %}
+                  <span class="average_nota">0,0/5,0</span>
+                {% endif %}
+              </div>
 
-              {% if current_bandeco.average_nota >= 0.5 %}
-                <span class="fa fa-star checked"></span>
-              {% else %}
-                <span class="fa fa-star"></span>
-              {% endif %}
-              {% if current_bandeco.average_nota >= 1.5 %}
-                <span class="fa fa-star checked"></span>
-              {% else %}
-                <span class="fa fa-star"></span>
-              {% endif %}
-              {% if current_bandeco.average_nota >= 2.5 %}
-                <span class="fa fa-star checked"></span>
-              {% else %}
-                <span class="fa fa-star"></span>
-              {% endif %}
-              {% if current_bandeco.average_nota >= 3.5 %}
-                <span class="fa fa-star checked"></span>
-              {% else %}
-                <span class="fa fa-star"></span>
-              {% endif %}
-              {% if current_bandeco.average_nota >= 4.5 %}
-                <span class="fa fa-star checked"></span>
-              {% else %}
-                <span class="fa fa-star"></span>
-              {% endif %}
-              {% if current_bandeco.average_nota %}
-                <span class="average_nota">{{ current_bandeco.average_nota|floatformat:1 }}/5,0</span>
-              {% else %}
-                <span class="average_nota">0,0/5,0</span>
-              {% endif %}
-            </div>
-
-            <div class="menu-info">
-              <h3>Cardápio:</h3>
-              <ul>
-                {% for item in current_bandeco.menu %}
-                  <li>{{ item }}</li>
-                {% endfor %}
-              </ul>
+              <div class="menu-info">
+                <h3>Cardápio:</h3>
+                <ul>
+                  {% for item in current_bandeco.menu %}
+                    <li>{{ item }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
             </div>
           </li>
         {% endfor %}
