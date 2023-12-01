@@ -14,7 +14,6 @@
   <main class="detail">
     <section>
       <h1>{{ bandeco.name }}</h1>
-      <p>{{ bandeco.description }}</p>
       <p class="endereco">{{ bandeco.endereco }}</p>
       <div class="stars_score">
         {% if bandeco_data.average_nota >= 0.5 %}
@@ -41,6 +40,11 @@
           <span class="fa fa-star checked"></span>
         {% else %}
           <span class="fa fa-star"></span>
+        {% endif %}
+        {% if bandeco_data.average_nota %}
+          <span class="average_nota">{{ bandeco_data.average_nota|floatformat:1 }}/5,0</span>
+        {% else %}
+          <span class="average_nota">0,0/5,0</span>
         {% endif %}
       </div>
       <p>
@@ -79,6 +83,11 @@
               {% else %}
                 <span class="fa fa-star"></span>
               {% endif %}
+              {% if bandeco_data.lunch_nota %}
+                <span class="average_nota">{{ bandeco_data.lunch_nota|floatformat:1 }}/5,0</span>
+              {% else %}
+                <span class="average_nota">0,0/5,0</span>
+              {% endif %}
             </p>
 
             <ul class="menu_list">
@@ -113,6 +122,11 @@
                 <span class="fa fa-star checked"></span>
               {% else %}
                 <span class="fa fa-star"></span>
+              {% endif %}
+              {% if bandeco_data.dinner_nota %}
+                <span class="average_nota">{{ bandeco_data.dinner_nota|floatformat:1 }}/5,0</span>
+              {% else %}
+                <span class="average_nota">0,0/5,0</span>
               {% endif %}
             </p>
             <ul class="menu_list">

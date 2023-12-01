@@ -29,32 +29,38 @@
               {% endfor %}
             </ul>
 
-            <div class="stars_score">{% if bandeco_data.average_nota >= 0.5 %}
-              <span class="fa fa-star checked"></span>
-            {% else %}
-              <span class="fa fa-star"></span>
-            {% endif %}
-            {% if bandeco_data.average_nota >= 1.5 %}
-              <span class="fa fa-star checked"></span>
-            {% else %}
-              <span class="fa fa-star"></span>
-            {% endif %}
-            {% if bandeco_data.average_nota >= 2.5 %}
-              <span class="fa fa-star checked"></span>
-            {% else %}
-              <span class="fa fa-star"></span>
-            {% endif %}
-            {% if bandeco_data.average_nota >= 3.5 %}
-              <span class="fa fa-star checked"></span>
-            {% else %}
-              <span class="fa fa-star"></span>
-            {% endif %}
-            {% if bandeco_data.average_nota >= 4.5 %}
-              <span class="fa fa-star checked"></span>
-            {% else %}
-              <span class="fa fa-star"></span>
-            {% endif %}</div>
-            
+            <div class="stars_score">
+              {% if bandeco_data.average_nota >= 0.5 %}
+                <span class="fa fa-star checked"></span>
+              {% else %}
+                <span class="fa fa-star"></span>
+              {% endif %}
+              {% if bandeco_data.average_nota >= 1.5 %}
+                <span class="fa fa-star checked"></span>
+              {% else %}
+                <span class="fa fa-star"></span>
+              {% endif %}
+              {% if bandeco_data.average_nota >= 2.5 %}
+                <span class="fa fa-star checked"></span>
+              {% else %}
+                <span class="fa fa-star"></span>
+              {% endif %}
+              {% if bandeco_data.average_nota >= 3.5 %}
+                <span class="fa fa-star checked"></span>
+              {% else %}
+                <span class="fa fa-star"></span>
+              {% endif %}
+              {% if bandeco_data.average_nota >= 4.5 %}
+                <span class="fa fa-star checked"></span>
+              {% else %}
+                <span class="fa fa-star"></span>
+              {% endif %}
+              {% if bandeco_data.average_nota %}
+                <span class="average_nota">{{ bandeco_data.average_nota|floatformat:1 }}/5,0</span>
+              {% else %}
+                <span class="average_nota">0,0/5,0</span>
+              {% endif %}
+            </div>
           </li>
         {% endfor %}
       </ul>

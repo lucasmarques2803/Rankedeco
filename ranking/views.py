@@ -84,11 +84,21 @@ class BandecoDetailView(generic.DetailView):
         dinner_notas = Nota.objects.filter(bandeco=bandeco, item__in=dinner_itens)
         dinner_average = dinner_notas.aggregate(Avg("value"))
 
+        if time.localtime().tm_hour < 15:
+            menu = lunch_menu
+        else:
+            menu = dinner_menu
+
+        itens = Item.objects.filter(bandeco=bandeco, name__in=menu)
+        notas = Nota.objects.filter(bandeco=bandeco, item__in=itens)
+        average = notas.aggregate(Avg("value"))
+
         bandeco_data = {
             "lunch_menu": lunch_menu,
             "dinner_menu": dinner_menu,
             "lunch_nota": lunch_average["value__avg"],
             "dinner_nota": dinner_average["value__avg"],
+            "average_nota": average["value__avg"],
         }
 
         context = {
