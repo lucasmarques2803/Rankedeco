@@ -10,25 +10,19 @@ class ComentarioSerializer(serializers.ModelSerializer):
 
 class BandecoSerializer(serializers.ModelSerializer):
     comentario_set = ComentarioSerializer(many=True, read_only=True)
-
+    
     class Meta:
         model = Bandeco
-        fields = ['id', 'name', 'horarios', 'contato', 'endereco', 'img_url', 'comentario_set']
+        fields = ['id', 'name', 'horarios', 'contato', 'endereco', 'img_url', 'comentario_set', 'item_set', 'nota_set']
 
 class ItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Item
-        fields = ['id', 'name']
+        fields = ['id', 'name', 'bandeco', 'nota_set']
 
 class NotaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Nota
         fields = ['id', 'bandeco', 'item', 'value', 'count']
-
-
-
-
-
-
