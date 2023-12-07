@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block title %}
-  Comentar
+  Avaliar
 {% endblock %}
 {% block content %}
   <main>
-    <h2>Comentar no Bandeco {{ bandeco.name }}</h2>
+    <h2>Avaliar o Bandeco {{ bandeco.name }}</h2>
     <form method="POST" action="{% url 'comment' bandeco.id %}">
       {% csrf_token %}
       {{ form.as_p }}

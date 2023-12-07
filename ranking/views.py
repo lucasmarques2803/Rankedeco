@@ -54,6 +54,8 @@ class BandecoListView(generic.ListView):
             itens = Item.objects.filter(bandeco=bandeco, name__in=menu)
             notas = Nota.objects.filter(bandeco=bandeco, item__in=itens)
             average = notas.aggregate(Avg("value"))
+            if average["value__avg"] is None:
+                average["value__avg"] = 0
 
             bandeco_data = {
                 "bandeco": bandeco,
@@ -63,6 +65,7 @@ class BandecoListView(generic.ListView):
             }
 
             context["bandeco_data"].append(bandeco_data)
+        context["bandeco_data"].sort(key=lambda x: x["average_nota"], reverse=True)
 
         return context
 
