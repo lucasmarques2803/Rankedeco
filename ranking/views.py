@@ -44,7 +44,6 @@ class BandecoListView(generic.ListView):
 
         bandecos = Bandeco.objects.all()
         context["bandeco_data"] = []
-
         for bandeco in bandecos:
             if time.localtime().tm_hour < 15:
                 menu = get_api_data(bandeco.name)["lunch_menu"]
@@ -65,6 +64,7 @@ class BandecoListView(generic.ListView):
             }
 
             context["bandeco_data"].append(bandeco_data)
+
         context["bandeco_data"].sort(key=lambda x: x["average_nota"], reverse=True)
 
         return context
