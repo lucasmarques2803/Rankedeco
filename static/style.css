@@ -345,13 +345,6 @@ nav li:nth-child(6n + 4) a:hover:before {
   width: 100%;
 }
 
-.main-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 400;
-}
-
 form {
   display: flex;
   flex-direction: column;
