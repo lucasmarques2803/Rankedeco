@@ -164,7 +164,7 @@ def create_comentario(request, bandeco_id):
             )
 
     form = ComentarioForm()
-    context = {'form': form, 'bandeco': bandeco}
+    context = {'form': form, 'bandeco': bandeco, 'notas': range(5, 0, -1)}
     return render(request, 'ranking/comment.html', context)
 
 

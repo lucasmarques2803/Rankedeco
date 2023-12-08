@@ -375,6 +375,7 @@ form {
   width: 45rem;
   border: 0.1rem solid black;
   border-radius: 1rem;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.575);
 }
 
 label {
@@ -443,6 +444,11 @@ form li{
   position:relative;
 }
 
+.login_signin_button.-second{
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
 .signup_button[type="submit"] {
   background-color: #0cf;
   color: white;
@@ -462,7 +468,7 @@ form li{
 
 .login_h1{
   font-size: 2rem;
-  font-weight: bold;
+  font-weight: 900;
   margin-top: 2rem;
   margin-bottom: 4rem;
 }
@@ -504,6 +510,26 @@ form li{
 }
 .average_nota {
   margin-left: 1rem;
+}
+
+.rating {
+  display: flex;
+  gap: 1rem;
+  flex-direction: row-reverse;
+}
+
+.star {
+  font-size: 3rem;
+  cursor: pointer;
+  float: left;
+}
+
+.star:hover ~ .star:not(.star.rated ~ .star, .star.rated), .star:hover {
+  color: rgba(255, 166, 0, 0.575);
+}
+
+.star.rated, .star.rated ~ .star {
+  color: orange;
 }
 
 @media only screen and (max-width:865px){

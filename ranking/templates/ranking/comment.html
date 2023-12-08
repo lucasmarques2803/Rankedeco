@@ -1,15 +1,36 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% block title %}
   Avaliar
 {% endblock %}
 {% block content %}
-  <main>
-    <h2>Avaliar o Bandeco {{ bandeco.name }}</h2>
-    <form method="POST" action="{% url 'comment' bandeco.id %}">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <a href="{% url 'detail' bandeco.id %} ">Cancelar</a>
-      <button type="submit">Postar Comentário</button>
-    </form>
-  </main>
+  <form method="POST" action="{% url "comment" bandeco.id %}">
+    <h2 class="login_h1">Avaliar o Bandeco {{ bandeco.name }}</h2>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <label for="nota_input">Nota:</label>
+    <div class="rating">
+      {% for nota in notas %}
+        <span class="star" data-rating="{{ nota }}">&#9733;</span>
+      {% endfor %}
+    </div>
+    <button type="submit" class="login_signin_button -second">Postar Avaliação</button>
+    <a href="{% url "detail" bandeco.id %}" class="login_button">Cancelar</a>
+  </form>
+
+  <script>
+    const stars = document.querySelectorAll(".star");
+
+    stars.forEach(star => {
+      star.addEventListener("click", function() {
+        const nota = this.getAttribute("data-rating");
+        document.getElementById("nota_input").value = nota;
+
+        stars.forEach(s => {
+          s.classList.remove("rated");
+        });
+
+        this.classList.add("rated");
+      });
+    });
+  </script>
 {% endblock %}
