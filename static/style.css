@@ -552,6 +552,8 @@ form li{
   background-color: black;
   height: 1.5rem;
   width: calc(1.7*5rem);
+  -webkit-mask-image: url("./images/stars.png");
+  -webkit-mask-size: 100% 100%;
   mask-image: url("./images/stars.png");
   mask-size: 100% 100%;
 }
