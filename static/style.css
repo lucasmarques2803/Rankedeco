@@ -88,6 +88,16 @@ hr.line{
   justify-content: space-between;
   align-items: left;
   margin-left: 1rem;
+} 
+
+.first-line {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.first-line p {
+  margin-right: 0.5rem;
+  text-wrap: nowrap;
 }
 
 .menu_list{
@@ -496,7 +506,7 @@ form li{
   margin-left: 1rem;
 }
 
-@media only screen and (max-width:850px){
+@media only screen and (max-width:865px){
   :root {
     font-size: 9px;
   }
