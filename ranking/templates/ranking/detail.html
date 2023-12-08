@@ -14,33 +14,11 @@
   <main class="detail">
     <section>
       <h1>{{ bandeco.name }}</h1>
-      <p class="endereco">{{ bandeco.endereco }}</p>
-      <div class="stars_score">
-        {% if bandeco_data.average_nota >= 0.5 %}
-          <span class="fa fa-star checked"></span>
-        {% else %}
-          <span class="fa fa-star"></span>
-        {% endif %}
-        {% if bandeco_data.average_nota >= 1.5 %}
-          <span class="fa fa-star checked"></span>
-        {% else %}
-          <span class="fa fa-star"></span>
-        {% endif %}
-        {% if bandeco_data.average_nota >= 2.5 %}
-          <span class="fa fa-star checked"></span>
-        {% else %}
-          <span class="fa fa-star"></span>
-        {% endif %}
-        {% if bandeco_data.average_nota >= 3.5 %}
-          <span class="fa fa-star checked"></span>
-        {% else %}
-          <span class="fa fa-star"></span>
-        {% endif %}
-        {% if bandeco_data.average_nota >= 4.5 %}
-          <span class="fa fa-star checked"></span>
-        {% else %}
-          <span class="fa fa-star"></span>
-        {% endif %}
+      <a href="https://www.google.com/maps/search/{{ bandeco.endereco }}" class="endereco" target="_blank">{{ bandeco.endereco }}</a>
+      <div class="average-nota-container">
+        <div class="progress-bar">
+          <div class="progress" style="width: calc(({{ bandeco_data.average_nota|floatformat:'5u' }}/5)*100%);"></div>
+        </div>
         {% if bandeco_data.average_nota %}
           <span class="average_nota">{{ bandeco_data.average_nota|floatformat:1 }}/5,0</span>
         {% else %}
@@ -59,32 +37,10 @@
           <div>
             <div class="first-line">
               <p>Menu almoço:</p>
-              <div class="stars_score">
-                {% if bandeco_data.lunch_nota >= 0.5 %}
-                  <span class="fa fa-star checked"></span>
-                {% else %}
-                  <span class="fa fa-star"></span>
-                {% endif %}
-                {% if bandeco_data.lunch_nota >= 1.5 %}
-                  <span class="fa fa-star checked"></span>
-                {% else %}
-                  <span class="fa fa-star"></span>
-                {% endif %}
-                {% if bandeco_data.lunch_nota >= 2.5 %}
-                  <span class="fa fa-star checked"></span>
-                {% else %}
-                  <span class="fa fa-star"></span>
-                {% endif %}
-                {% if bandeco_data.lunch_nota >= 3.5 %}
-                  <span class="fa fa-star checked"></span>
-                {% else %}
-                  <span class="fa fa-star"></span>
-                {% endif %}
-                {% if bandeco_data.lunch_nota >= 4.5 %}
-                  <span class="fa fa-star checked"></span>
-                {% else %}
-                  <span class="fa fa-star"></span>
-                {% endif %}
+              <div class="average-nota-container">
+                <div class="progress-bar">
+                  <div class="progress" style="width: calc(({{ bandeco_data.lunch_nota|floatformat:'5u' }}/5)*100%);"></div>
+                </div>
                 {% if bandeco_data.lunch_nota %}
                   <span class="average_nota">{{ bandeco_data.lunch_nota|floatformat:1 }}/5,0</span>
                 {% else %}
@@ -101,32 +57,10 @@
           <div>
             <div class="first-line">
               <p>Menu jantar:</p>
-              <div class="stars_score">
-                {% if bandeco_data.dinner_nota >= 0.5 %}
-                  <span class="fa fa-star checked"></span>
-                {% else %}
-                  <span class="fa fa-star"></span>
-                {% endif %}
-                {% if bandeco_data.dinner_nota >= 1.5 %}
-                  <span class="fa fa-star checked"></span>
-                {% else %}
-                  <span class="fa fa-star"></span>
-                {% endif %}
-                {% if bandeco_data.dinner_nota >= 2.5 %}
-                  <span class="fa fa-star checked"></span>
-                {% else %}
-                  <span class="fa fa-star"></span>
-                {% endif %}
-                {% if bandeco_data.dinner_nota >= 3.5 %}
-                  <span class="fa fa-star checked"></span>
-                {% else %}
-                  <span class="fa fa-star"></span>
-                {% endif %}
-                {% if bandeco_data.dinner_nota >= 4.5 %}
-                  <span class="fa fa-star checked"></span>
-                {% else %}
-                  <span class="fa fa-star"></span>
-                {% endif %}
+              <div class="average-nota-container">
+                <div class="progress-bar">
+                  <div class="progress" style="width: calc(({{ bandeco_data.dinner_nota|floatformat:'5u' }}/5)*100%);"></div>
+                </div>
                 {% if bandeco_data.dinner_nota %}
                   <span class="average_nota">{{ bandeco_data.dinner_nota|floatformat:1 }}/5,0</span>
                 {% else %}

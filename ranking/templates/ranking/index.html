@@ -22,37 +22,16 @@
                 <h2>{{ current_bandeco.bandeco.name }}</h2>
                 <p>{{ current_bandeco.bandeco.endereco }}</p>
                 <p>Telefone: {{ current_bandeco.bandeco.contato }}</p>
-
-                {% if current_bandeco.average_nota >= 0.5 %}
-                  <span class="fa fa-star checked"></span>
-                {% else %}
-                  <span class="fa fa-star"></span>
-                {% endif %}
-                {% if current_bandeco.average_nota >= 1.5 %}
-                  <span class="fa fa-star checked"></span>
-                {% else %}
-                  <span class="fa fa-star"></span>
-                {% endif %}
-                {% if current_bandeco.average_nota >= 2.5 %}
-                  <span class="fa fa-star checked"></span>
-                {% else %}
-                  <span class="fa fa-star"></span>
-                {% endif %}
-                {% if current_bandeco.average_nota >= 3.5 %}
-                  <span class="fa fa-star checked"></span>
-                {% else %}
-                  <span class="fa fa-star"></span>
-                {% endif %}
-                {% if current_bandeco.average_nota >= 4.5 %}
-                  <span class="fa fa-star checked"></span>
-                {% else %}
-                  <span class="fa fa-star"></span>
-                {% endif %}
-                {% if current_bandeco.average_nota %}
-                  <span class="average_nota">{{ current_bandeco.average_nota|floatformat:1 }}/5,0</span>
-                {% else %}
-                  <span class="average_nota">0,0/5,0</span>
-                {% endif %}
+                <div class="average-nota-container">
+                  <div class="progress-bar">
+                    <div class="progress" style="width: calc(({{ current_bandeco.average_nota|floatformat:'5u' }}/5)*100%);"></div>
+                  </div>
+                  {% if current_bandeco.average_nota %}
+                    <span class="average_nota">{{ current_bandeco.average_nota|floatformat:1 }}/5,0</span>
+                  {% else %}
+                    <span class="average_nota">0,0/5,0</span>
+                  {% endif %}
+                </div>
               </div>
 
               <div class="menu-info">
