@@ -8,7 +8,15 @@
   <form method="post" action="{% url 'login' %}">
     <h1 class="login_h1">Login de Usuário</h1>
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form.non_field_errors }}
+    {{ form.username.errors }}
+    {{ form.username.label_tag }} {{ form.username }}
+    {{ form.password.errors }}
+    {{ form.password.label_tag }}
+    <div class="field-container password">
+      {{ form.password }}
+      <span class="fa fa-fw fa-eye field-icon toggle-password"></span>
+    </div>
     <button type="submit" value="login" class="login_signin_button">Entrar</button>
     <input type="hidden" name="next" value="{{ next }}" />
     <p class="login">Não possui usuário?</p>

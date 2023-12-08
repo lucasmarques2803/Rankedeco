@@ -23,7 +23,7 @@ h2 {
   margin-bottom: 1rem;
 }
 
-main{
+main {
   margin-left: auto;
   margin-right: auto;
   width: 80%;
@@ -31,18 +31,18 @@ main{
   flex-grow: 1;
 }
 
-li{
+li {
   list-style-type: none;
 }
 
-.ul_comment{
+.ul_comment {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
 }
 
-.detail_article{
+.detail_article {
   display: flex;
   flex-direction: row;
   left: 0;
@@ -62,33 +62,33 @@ li{
   }
 }
 
-hr.line{
+hr.line {
   border-top: 1px dotted;
   margin-top: 1rem;
   color: #333;
 }
 
-.icon{
+.icon {
   width: 1.5rem;
   height: auto;
   margin-right: 0.5rem;
 }
 
-.endereco{
+.endereco {
   margin-top: 1.5rem;
-  font-family: "Trip Sans VF","Trip Sans",Arial,sans-serif;
+  font-family: "Trip Sans VF", "Trip Sans", Arial, sans-serif;
   font-weight: lighter;
   text-decoration-line: underline;
   color: #333;
 }
 
-.menus{
+.menus {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: left;
   margin-left: 1rem;
-} 
+}
 
 .first-line {
   display: flex;
@@ -100,13 +100,13 @@ hr.line{
   text-wrap: nowrap;
 }
 
-.menu_list{
+.menu_list {
   list-style-type: circle;
   margin-left: 2rem;
   margin-top: 0.5rem;
 }
 
-.comment_head{
+.comment_head {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -128,10 +128,10 @@ hr.line{
   border-radius: 10rem;
   background-color: #0cf;
   color: white;
-  position:relative;
+  position: relative;
 }
 
-.delete_button{
+.delete_button {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -144,12 +144,12 @@ hr.line{
   border-radius: 10rem;
   background-color: red;
   color: white;
-  position:relative;
+  position: relative;
   cursor: pointer;
   border: none;
 }
 
-.comment_buttons_align{
+.comment_buttons_align {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -195,13 +195,13 @@ hr.line{
   transition: transform 0.3s;
 }
 
-.card .bandeco-info{
+.card .bandeco-info {
   width: 50%;
   min-width: 14.7rem;
   flex-wrap: wrap;
 }
 
-.card .menu-info{
+.card .menu-info {
   width: 45%;
   flex-wrap: wrap;
 }
@@ -235,6 +235,7 @@ nav li {
   list-style: none;
   text-align: center;
 }
+
 nav li a {
   color: #333;
   text-decoration: none;
@@ -244,14 +245,17 @@ nav li a {
   font-weight: 700;
   transition: 0.5s;
 }
+
 nav:hover li a {
   opacity: 0;
 }
+
 nav li:hover a {
   color: #000;
   background: transparent;
   opacity: 1;
 }
+
 nav li a:before {
   content: "";
   position: absolute;
@@ -388,31 +392,48 @@ label {
 }
 
 input[type="text"] {
-  width: 40rem;
-  padding: 0.8rem;
-  margin-bottom: 1rem;
-  border: 0.1rem solid rgb(140, 159, 164);
-  border-radius: 1.6rem;
   font-weight: bold;
-  background-color: rgb(206, 231, 238);
+  text-align: center;
 }
 
-input[type="password"] {
+input[type="text"],
+.field-container.password {
   width: 40rem;
   padding: 0.8rem;
   margin-bottom: 1rem;
   border: 0.1rem solid #0cf;
   border-radius: 1.6rem;
   background-color: rgb(206, 231, 238);
+  font-size: 1.6rem;
 }
+
+.field-container.password {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  position: relative;
+}
+
+#id_password {
+  height: 100%;
+  width: 36rem;
+  padding: 0;
+  text-align: center;
+  background-color: rgb(206, 231, 238);
+  border: none;
+  outline: none;
+  z-index: 1;
+}
+
 
 input::placeholder {
   color: #bbbbbb;
 }
 
-form li{
+form li {
   display: none;
 }
+
 .helptext {
   display: none;
 }
@@ -429,7 +450,7 @@ form li{
   margin-bottom: 1rem;
 }
 
-.login_button{
+.login_button {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -441,10 +462,10 @@ form li{
   border-radius: 10rem;
   background-color: #0cf;
   color: white;
-  position:relative;
+  position: relative;
 }
 
-.login_signin_button.-second{
+.login_signin_button.-second {
   margin-bottom: 2rem;
   margin-top: 2rem;
 }
@@ -466,14 +487,14 @@ form li{
   background-color: #008fb3;
 }
 
-.login_h1{
+.login_h1 {
   font-size: 2rem;
   font-weight: 900;
   margin-top: 2rem;
   margin-bottom: 4rem;
 }
 
-.login{
+.login {
   display: flex;
   text-align: center;
   align-items: center;
@@ -494,7 +515,7 @@ form li{
   padding: 1rem;
 }
 
-.error{
+.error {
   display: flex;
   flex-direction: column;
   color: red;
@@ -504,6 +525,7 @@ form li{
   align-items: center;
   text-align: justify;
 }
+
 .average_nota {
   margin-left: 1rem;
 }
@@ -520,28 +542,30 @@ form li{
   float: left;
 }
 
-.star:hover ~ .star:not(.star.rated ~ .star, .star.rated), .star:hover {
+.star:hover~.star:not(.star.rated ~ .star, .star.rated),
+.star:hover {
   color: rgba(255, 166, 0, 0.575);
 }
 
-.star.rated, .star.rated ~ .star {
+.star.rated,
+.star.rated~.star {
   color: orange;
 }
 
-@media only screen and (max-width:865px){
+@media only screen and (max-width:865px) {
   :root {
     font-size: 9px;
   }
 }
 
-@media only screen and (max-width:655px){
-  .card .bandeco-info{
+@media only screen and (max-width:655px) {
+  .card .bandeco-info {
     width: 100%;
     min-width: 14.7rem;
     flex-wrap: wrap;
   }
-  
-  .card .menu-info{
+
+  .card .menu-info {
     width: 100%;
     flex-wrap: wrap;
   }
@@ -569,6 +593,6 @@ form li{
   align-items: center;
 }
 
-.average-nota-container > span {
+.average-nota-container>span {
   margin-top: 0.04rem;
 }
