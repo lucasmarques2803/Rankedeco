@@ -561,6 +561,7 @@ form li{
 .progress {
   background-color: orange;
   height: 1.5rem;
+  width: 0%;
 }
 
 .average-nota-container {
