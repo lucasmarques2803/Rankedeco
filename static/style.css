@@ -412,6 +412,9 @@ input[type="text"],
   align-items: center;
   justify-content: end;
   position: relative;
+  outline-width: 1px;
+  outline-color: rgb(16, 16, 16);
+  outline-style: auto;
 }
 
 #id_password {
@@ -423,8 +426,12 @@ input[type="text"],
   border: none;
   outline: none;
   z-index: 1;
+  margin: 0;
 }
 
+.toggle-password {
+  cursor: pointer;
+}
 
 input::placeholder {
   color: #bbbbbb;

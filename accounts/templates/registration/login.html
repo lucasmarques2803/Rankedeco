@@ -33,4 +33,19 @@
       {% endif %}
     {% endif %}
   </form>
+
+  <script>
+    const togglePassword = document.querySelector('.toggle-password')
+    const password = document.querySelector('#id_password')
+    
+    togglePassword.addEventListener('click', function () {
+      if (password.type === 'password') {
+        password.type = 'text'
+      } else {
+        password.type = 'password'
+      }
+
+      togglePassword.classList.toggle("fa-eye-slash")
+    })
+  </script>
 {% endblock %}
